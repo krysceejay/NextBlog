@@ -1,0 +1,152 @@
+.container {
+  max-width: $website-width;
+  padding: 0 1.5rem;
+  margin: auto;
+  overflow: hidden;
+}
+
+.text-primary {
+  color: $main-color !important;
+}
+
+//Padding
+.py {
+  &-1 {
+    padding: 1rem 0 !important;
+  }
+  &-2 {
+    padding: 2rem 0 !important;
+  }
+  &-3 {
+    padding: 3rem 0 !important;
+  }
+  &-4 {
+    padding: 4rem 0 !important;
+  }
+}
+
+//Margin
+.my {
+  &-1 {
+    margin: 1rem 0 !important;
+  }
+  &-2 {
+    margin: 2rem 0 !important;
+  }
+  &-3 {
+    margin: 3rem 0 !important;
+  }
+  &-4 {
+    margin: 4rem 0 !important;
+  }
+}
+
+//Buttons
+%btn-shared {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  transition: all 0.5s;
+  cursor: pointer;
+  //border-radius: 5px;
+  text-decoration: none !important;
+  box-shadow: none;
+  font-size: 1rem;
+}
+
+.btn {
+  &-main {
+    @extend %btn-shared;
+    color: #fff;
+    background-color: $main-color;
+  }
+}
+
+.paginate-links {
+  &-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    li {
+      a {
+        border-radius: 0;
+        padding: 0.6rem 1rem;
+        margin: auto 0.1rem;
+        border: rgba(0, 0, 0, 0.1) 0.5px solid;
+        &:hover,
+        &.current {
+          background-color: $main-color;
+          color: $light-color;
+        }
+      }
+    }
+  }
+}
+
+input,
+select,
+textarea {
+  border: 1px $light-color solid;
+  padding: 10px;
+  font-size: 1rem;
+  //height: 25px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border: 1px $main-color solid;
+}
+
+#main-nav {
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  background: $secondary-color;
+  z-index: 1;
+  color: #fff;
+  a {
+    color: #fff;
+  }
+  ul {
+    display: flex;
+    li {
+      position: relative;
+      padding: 1rem 1.5rem;
+    }
+
+    a {
+      text-decoration: none !important;
+      color: #fff;
+      text-transform: uppercase;
+      border-bottom: 3px transparent solid;
+      padding-bottom: 0.5rem;
+      transition: border-color 0.5s;
+
+      &:hover {
+        border-color: $medium-color;
+      }
+      &.current {
+        border-color: $main-color;
+      }
+    }
+    .parent-sub-menu {
+      &:hover ul {
+        position: absolute;
+        top: 3rem;
+      }
+    }
+  }
+}
+
+footer {
+  background: $secondary-color;
+  padding: 1.5rem;
+  color: $light-color;
+  text-align: center;
+}
