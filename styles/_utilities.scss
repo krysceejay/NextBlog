@@ -47,10 +47,12 @@
   padding: 0.6rem 1.5rem;
   transition: all 0.5s;
   cursor: pointer;
-  //border-radius: 5px;
+  border-radius: 5px;
   text-decoration: none !important;
-  box-shadow: none;
+  box-shadow: none !important;
+  outline: none !important;
   font-size: 1rem;
+  -webkit-appearance: inherit;
 }
 
 .btn {
@@ -59,6 +61,23 @@
     color: #fff;
     background-color: $main-color;
   }
+}
+
+button[class^='btn-']:hover,
+a[class^='btn-']:hover,
+input[class^='btn-']:hover {
+  background-color: set-btn-hover-color($light-color);
+  color: set-text-color($light-color);
+  box-shadow: none;
+  outline: none;
+  z-index: 0;
+}
+
+button[class^='btn-']:focus,
+a[class^='btn-']:focus,
+input[class^='btn-']:focus {
+  box-shadow: none;
+  outline: none;
 }
 
 .paginate-links {

@@ -64,7 +64,6 @@ const Details = () => (
             <br />
             <hr />
             <div className="comment-post my-2">
-
             <div className="leave-a-comment my-2">
                 <form action="">
                   <textarea

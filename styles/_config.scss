@@ -16,3 +16,20 @@ $border-bottom: #e1e1e1;
 $star-background: #ddd;
 $star-color: #e2cf00;
 $star-size: 1rem;
+
+//Set Text Color
+@function set-text-color($color) {
+  @if (lightness($color) > 50) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
+@function set-btn-hover-color($color) {
+  @if ($color == $secondary-color) {
+    @return $main-color;
+  } @else {
+    @return $light-color;
+  }
+}

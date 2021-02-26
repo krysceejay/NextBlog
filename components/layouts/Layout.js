@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Header from "../Header";
 import Footer from "../Footer";
+import Notify from "../Notify";
 
 const Layout = ({ children, title }) => {
   return  (
@@ -9,6 +10,7 @@ const Layout = ({ children, title }) => {
         <title>{title}</title>
       </Head>
       <Header />
+      <Notify />
       {children}
       <Footer />
     </div>
