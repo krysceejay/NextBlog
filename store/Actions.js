@@ -6,7 +6,8 @@ export const ACTIONS = {
     ADD_ORDERS: 'ADD_ORDERS',
     ADD_USERS: 'ADD_USERS',
     ADD_CATEGORIES: 'ADD_CATEGORIES',
-}
+    GET_TOP_POSTS: 'GET_TOP_POSTS',
+ }
 
 export const addToCart = (product, cart) => {
     if(product.inStock === 0)

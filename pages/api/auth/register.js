@@ -7,8 +7,7 @@ import valid from '../../../utils/valid'
 connectDB()
 
 export default async (req, res) => {
-    const {method} = req
-    switch (method) {
+    switch (req.method) {
         case "POST":
             await register(req, res)
             break;

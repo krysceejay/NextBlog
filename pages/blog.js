@@ -1,152 +1,27 @@
-import Link from 'next/link';
-import Layout from '../components/layouts/Layout';
+import {useState} from 'react'
+import Layout from '../components/layouts/Layout'
+import Post from '../components/post/Post'
+import FirstPost from '../components/post/FirstPost'
+import TopPosts from '../components/post/TopPosts'
+import {getData} from '../utils/fetchData'
+import Socials from '../components/Socials'
+import NewsLetter from '../components/NewsLetter'
 
-const Blog = () => (
+const Blog = ({posts, result}) => {
+  const [allPosts, setPost] = useState(posts);
+      return (
       <Layout title="Blog">
         <section id="blog-sec" className="py-4">
       <div className="container">
         <div className="blog-sec-view">
+          {allPosts.length === 0 ? <h3>No post</h3> : 
           <div className="blog-sec-view-main">
-            <Link href="/blog/1">
-            <a>
-              <div className="latest-post-img">
-              <img src="/img/b1.jpg" alt="blog post image" />
-                <div className="latest-post-img-info">
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                    <li><i className="fa fa-thumbs-up"></i> 200</li>
-                    <li><i className="fa fa-comment"></i> 15</li>
-                  </ul>
-                </div>
-              </div>
-            </a>
-            </Link>
-            <h1>Post Title Post Title</h1>
-            <div className="post-text my-1">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis
-                quos quisquam nesciunt hic consequatur sunt placeat accusamus
-                inventore. Quasi, mollitia!
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis
-                quos quisquam nesciunt hic consequatur sunt placeat accusamus
-                inventore. Quasi, mollitia...
-              </p>
-              <Link href="/blog/1">
-               <a className="btn btn-main my-1">Read More</a>
-              </Link>
-            </div>
-
+            <FirstPost post={allPosts[0]} />
             <div className="rest-post">
-              <div className="rest-post-single">
-                <div className="rest-post-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <h3>Post Title Post Title</h3>
-                <div className="post-text my-1">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Omnis quos quisquam nesciunt hic consequatur...
-                  </p>
-
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                    <li><i className="fa fa-thumbs-up"></i> 200</li>
-                    <li><i className="fa fa-comment"></i> 15</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="rest-post-single">
-                <div className="rest-post-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <h3>Post Title Post Title</h3>
-                <div className="post-text my-1">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Omnis quos quisquam nesciunt hic consequatur...
-                  </p>
-
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                    <li><i className="fa fa-thumbs-up"></i> 200</li>
-                    <li><i className="fa fa-comment"></i> 15</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="rest-post-single">
-                <div className="rest-post-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <h3>Post Title Post Title</h3>
-                <div className="post-text my-1">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Omnis quos quisquam nesciunt hic consequatur...
-                  </p>
-
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                    <li><i className="fa fa-thumbs-up"></i> 200</li>
-                    <li><i className="fa fa-comment"></i> 15</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="rest-post-single">
-                <div className="rest-post-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <h3>Post Title Post Title</h3>
-                <div className="post-text my-1">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Omnis quos quisquam nesciunt hic consequatur...
-                  </p>
-
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                    <li><i className="fa fa-thumbs-up"></i> 200</li>
-                    <li><i className="fa fa-comment"></i> 15</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="rest-post-single">
-                <div className="rest-post-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <h3>Post Title Post Title</h3>
-                <div className="post-text my-1">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Omnis quos quisquam nesciunt hic consequatur...
-                  </p>
-
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                    <li><i className="fa fa-thumbs-up"></i> 200</li>
-                    <li><i className="fa fa-comment"></i> 15</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="rest-post-single">
-                <div className="rest-post-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <h3>Post Title Post Title</h3>
-                <div className="post-text my-1">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Omnis quos quisquam nesciunt hic consequatur...
-                  </p>
-
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                    <li><i className="fa fa-thumbs-up"></i> 200</li>
-                    <li><i className="fa fa-comment"></i> 15</li>
-                  </ul>
-                </div>
-              </div>
+              {allPosts.slice(1).map(post => {
+                  return <Post key={post._id} post={post} />
+                })
+              }
             </div>
 
             {/* pagination */}
@@ -171,75 +46,27 @@ const Blog = () => (
             </ul>
             {/* end pagination */}
           </div>
+          }
           <aside className="blog-sec-view-aside">
-            <h2>Top Post</h2>
-            <div className="topost-content">
-              <div className="topost-content-single">
-                <div className="topost-content-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <div className="topost-content-single-text">
-                  Pellentesque dui, non felis. Maecenas male non felis...
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="topost-content-single">
-                <div className="topost-content-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <div className="topost-content-single-text">
-                  Pellentesque dui, non felis. Maecenas male non felis...
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="topost-content-single">
-                <div className="topost-content-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <div className="topost-content-single-text">
-                  Pellentesque dui, non felis. Maecenas male non felis...
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="newsletter-sub">
-              <h2>Sign up to our newsletter</h2>
-              <form action="">
-                <div className="newsletter-sub-form my-1">
-                  <input type="email" placeholder="your email" />
-                  <button type="submit" className="btn btn-main">Submit</button>
-                </div>
-              </form>
-            </div>
-
-            <div className="connect-socials">
-              <h2>Stay Connected</h2>
-              <div className="connect-socials-icons my-1">
-                <a href="www.twitter.com">
-                  <i className="fa fa-twitter fa-2x"></i>
-                </a>
-                <a href="www.facebook.com">
-                  <i className="fa fa-facebook fa-2x"></i>
-                </a>
-                <a href="www.facebook.com">
-                  <i className="fa fa-instagram fa-2x"></i>
-                </a>
-                <a href="www.youtube.com">
-                  <i className="fa fa-youtube fa-2x"></i>
-                </a>
-              </div>
-            </div>
+            <TopPosts /> 
+            <NewsLetter />
+            <Socials />
           </aside>
         </div>
       </div>
     </section>
       </Layout>
     )
+  }
+ 
+export async function getServerSideProps() {
+  const res = await getData('post')
+  return {
+    props: {
+      posts: res.posts,
+      result: res.result
+    }, // will be passed to the page component as props
+  }
+} 
 
 export default Blog;

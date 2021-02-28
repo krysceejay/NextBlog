@@ -1,65 +1,34 @@
-import { useState } from 'react';
-import Link from 'next/link';
+import moment from "moment";
 import Layout from '../../components/layouts/Layout';
+import { getData } from '../../utils/fetchData'
+import Socials from '../../components/Socials';
+import NewsLetter from '../../components/NewsLetter';
+import TopPosts from '../../components/post/TopPosts';
+import {isEmpty} from '../../utils/func'
 
-const Details = () => (
+const Details = ({post}) => {
+  return (
       <Layout title="Blog Details">
         <section id="blog-sec" className="py-4">
       <div className="container">
         <div className="blog-sec-view">
           <div className="blog-sec-view-main">
+            { post === null || isEmpty(post) ? 
+            <h3>Loading...</h3> : 
+            <>
             <div className="latest-post-img">
-              <img src="/img/b1.jpg" alt="" />
+              <img src={post.postImg} alt="" />
               <div className="latest-post-img-info">
                 <ul>
-                  <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                  <li><i className="fa fa-thumbs-up"></i> 200</li>
-                  <li><i className="fa fa-comment"></i> 15</li>
+                  <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>
+                  <li><i className="fa fa-thumbs-up"></i> {post.likes.length}</li>
+                  <li><i className="fa fa-comment"></i> {post.comments.length}</li>
                 </ul>
               </div>
             </div>
-            <h1>Post Title Post Title</h1>
+            <h1>{post.title}</h1>
             <div className="post-text my-1">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis
-                quos quisquam nesciunt hic consequatur sunt placeat accusamus
-                inventore. Quasi, mollitia!
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis
-                quos quisquam nesciunt hic consequatur sunt placeat accusamus
-                inventore. Quasi, mollitia...
-              </p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Accusantium earum ea quia facilis. Ducimus ex harum facere quam
-              ipsam fuga commodi a accusantium hic illum impedit tempore
-              provident voluptates, numquam libero dolorum expedita fugiat non
-              quis! Commodi eligendi accusamus delectus unde? Maxime, facilis
-              illum? Praesentium id ut quo quasi eaque, non quaerat, vitae sint
-              illum totam iste aliquam. Pariatur neque repellendus, commodi
-              dolorem amet odit, recusandae veniam quos impedit incidunt
-              officiis mollitia illum dicta deleniti delectus, praesentium
-              voluptas blanditiis eum dolore ipsa. Assumenda fuga dolor error
-              neque, ipsam esse dolore unde id, molestias aspernatur non itaque,
-              perspiciatis recusandae tempora laudantium.
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
-                rem nostrum, totam nulla illo exercitationem aperiam. Fuga sint
-                eius cumque fugit modi ex voluptatibus consequuntur tenetur
-                accusantium architecto expedita vel, aperiam debitis ab
-                doloribus repellat doloremque ut, maiores numquam optio
-                asperiores alias, quia quasi in. Repellat officia odio quod
-                perferendis, doloribus officiis tenetur. Dolorum, aspernatur
-                modi magni beatae laboriosam labore non voluptatum repudiandae
-                quo vitae enim blanditiis iusto, ratione odit ea assumenda eos
-                sit nisi aliquam, eligendi consequuntur! Minus vel, praesentium
-                quibusdam iusto fuga ducimus id repellat eius pariatur officia
-                earum accusantium optio eligendi perferendis ipsam iste quam
-                distinctio consequatur non? Vero sint reprehenderit quisquam
-                amet doloremque, vitae hic fuga enim magni explicabo repellendus
-                at a laudantium officiis minus tenetur!
-              </p>
+              {post.body}
             </div>
             <br />
             <hr />
@@ -147,76 +116,33 @@ const Details = () => (
               <button className="btn btn-main">See more</button>
               
             </div>
+            </>
+            }
           </div>
           <aside className="blog-sec-view-aside">
-            <h2>Top Post</h2>
-            <div className="topost-content">
-              <div className="topost-content-single">
-                <div className="topost-content-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <div className="topost-content-single-text">
-                  Pellentesque dui, non felis. Maecenas male non felis...
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="topost-content-single">
-                <div className="topost-content-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <div className="topost-content-single-text">
-                  Pellentesque dui, non felis. Maecenas male non felis...
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="topost-content-single">
-                <div className="topost-content-single-img">
-                  <img src="/img/b4.jpg" alt="" />
-                </div>
-                <div className="topost-content-single-text">
-                  Pellentesque dui, non felis. Maecenas male non felis...
-                  <ul>
-                    <li><i className="fa fa-calendar"></i> Feb 15, 2020</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="newsletter-sub">
-              <h2>Sign up to our newsletter</h2>
-              <form action="">
-                <div className="newsletter-sub-form my-1">
-                  <input type="email" placeholder="your email" />
-                  <button type="submit" className="btn btn-main">Submit</button>
-                </div>
-              </form>
-            </div>
-
-            <div className="connect-socials">
-              <h2>Stay Connected</h2>
-              <div className="connect-socials-icons my-1">
-                <a href="www.twitter.com">
-                  <i className="fa fa-twitter fa-2x"></i>
-                </a>
-                <a href="www.facebook.com">
-                  <i className="fa fa-facebook fa-2x"></i>
-                </a>
-                <a href="www.facebook.com">
-                  <i className="fa fa-instagram fa-2x"></i>
-                </a>
-                <a href="www.youtube.com">
-                  <i className="fa fa-youtube fa-2x"></i>
-                </a>
-              </div>
-            </div>
+            <TopPosts />
+            <NewsLetter />
+            <Socials />
           </aside>
         </div>
       </div>
     </section>
       </Layout>
     )
+  }
+
+  export async function getServerSideProps({params: {id}}) {
+    const res = await getData(`post/${id}`)
+    if (res.err) {
+      return {
+        notFound: true,
+      }
+    }
+    return {
+      props: { 
+        post: res.post
+      }
+    }
+ }
 
 export default Details;
