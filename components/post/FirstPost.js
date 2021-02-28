@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import moment from "moment"
+import moment from 'moment'
 import {truncate} from '../../utils/func'
 const FirstPost = ({post}) => {
     return (

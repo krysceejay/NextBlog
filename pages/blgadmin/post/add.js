@@ -52,27 +52,28 @@ const AddPost = () => {
   }
 
     const handleSubmit = async e => {
-    e.preventDefault()
-    let media;
-    if(!auth.user.isAdmin) return dispatch({type: 'NOTIFY', payload: {error: 'Authentication is not valid.'}})
+        e.preventDefault()
+        let media;
+        if(!auth.user.isAdmin) return dispatch({type: 'NOTIFY', payload: {error: 'Authentication is not valid.'}})
 
-    if(!title || !body || !postImg || category.length === 0)
-    return dispatch({type: 'NOTIFY', payload: {error: 'Please add all the fields.'}})
+        if(!title || !body || !postImg || category.length === 0)
+        return dispatch({type: 'NOTIFY', payload: {error: 'Please add all the fields.'}})
 
-    dispatch({ type: 'NOTIFY', payload: {loading: true} })
+        dispatch({ type: 'NOTIFY', payload: {loading: true} })
 
-    if(postImg) media = await imageUpload([postImg])
+        if(postImg) media = await imageUpload([postImg])
 
-    const res = await postData('post', { 
-        title, 
-        body, 
-        category,
-        postImg: media[0].url
-        }, auth.token)
+        const res = await postData('post', { 
+            title, 
+            body, 
+            category,
+            postImg: media[0].url
+            }, auth.token)
 
-    if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
+        if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
 
-    return dispatch({type: 'NOTIFY', payload: {success: res.msg}})
+        dispatch({type: 'NOTIFY', payload: {success: res.msg}})
+        router.push('/blgadmin/post')
     }
 
     return (

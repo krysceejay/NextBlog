@@ -7,6 +7,8 @@ export const ACTIONS = {
     ADD_USERS: 'ADD_USERS',
     ADD_CATEGORIES: 'ADD_CATEGORIES',
     GET_TOP_POSTS: 'GET_TOP_POSTS',
+    GET_COMMENTS: 'GET_COMMENTS',
+    ADD_COMMENT: 'ADD_COMMENT',
  }
 
 export const addToCart = (product, cart) => {

@@ -29,6 +29,16 @@ const reducers = (state, action) => {
                 ...state,
                 topPosts: action.payload
             };
+        case ACTIONS.GET_COMMENTS:
+            return {
+                ...state,
+                comments: action.payload
+             };
+        case ACTIONS.ADD_COMMENT:
+            return {
+                ...state,
+                comments: [action.payload, ...state.comments]
+             };
         default:
             return state;
     }

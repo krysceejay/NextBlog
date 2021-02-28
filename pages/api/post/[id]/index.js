@@ -1,6 +1,5 @@
-import connectDB from '../../../utils/db'
-import Post from '../../../models/Post'
-import auth from '../../../middleware/auth'
+import connectDB from '../../../../utils/db'
+import Post from '../../../../models/Post'
 
 connectDB()
 

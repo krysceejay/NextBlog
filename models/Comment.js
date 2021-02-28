@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import ReplySchema from './Reply'
 const Schema = mongoose.Schema
 
 const CommentSchema = new Schema({

@@ -4,6 +4,7 @@ import { DataContext } from '../../store/GlobalState'
 import TopPost from './TopPost'
 
 const TopPosts = () => {
+    //TODO: SET LOADING STATE
     const {state, dispatch} = useContext(DataContext)
     const { topPosts } = state
 

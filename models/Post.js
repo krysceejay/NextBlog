@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import CommentSchema from './Comment';
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
@@ -48,6 +47,6 @@ const PostSchema = new Schema({
 });
 
 
-let Post = mongoose.models.post|| mongoose.model('post', PostSchema)
+let Post = mongoose.models.post || mongoose.model('post', PostSchema)
 
 export default Post
