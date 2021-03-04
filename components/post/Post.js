@@ -1,7 +1,19 @@
 import Link from 'next/link'
 import moment from "moment";
-import {truncate} from '../../utils/func'
-const Post = ({post}) => {
+import {truncate, isEmpty} from '../../utils/func'
+const Post = ({post, like, auth}) => {
+    const likeAPost = () => {
+        like(post._id)
+    }
+
+    const userLiked = () => {
+        if(isEmpty(auth)){
+            return false
+        }else {
+            return post.likes.some(like => like.user.toString() === auth.user.id.toString())
+        }
+     }
+    
     return (
         <div className="rest-post-single">
             <Link href={`/blog/${post._id}`}>
@@ -19,8 +31,10 @@ const Post = ({post}) => {
 
                 <ul>
                 <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>
-                <li><i className="fa fa-thumbs-up"></i> {post.likes.length}</li>
-                <li><i className="fa fa-comment"></i> {post.comments.length}</li>
+                <li onClick={likeAPost} className="cursor-pt">
+                    <i className={userLiked() ? "fa fa-thumbs-up" : "fa fa-thumbs-o-up"}>
+                        </i> {post.likes.length}</li>
+                <li><i className="fa fa-comment-o"></i> {post.comments.length}</li>
                 </ul>
             </div>
         </div>

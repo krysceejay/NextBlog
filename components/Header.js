@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import Link from 'next/link';
 import {useRouter} from 'next/router'
 import Cookie from 'js-cookie'
@@ -9,7 +9,7 @@ const Header = () => {
 
   const router = useRouter()
     const {state, dispatch} = useContext(DataContext)
-    const { auth, cart } = state
+    const { auth } = state
 
 
     const isActive = (r) => {

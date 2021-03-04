@@ -1,21 +1,7 @@
-import { useEffect, useContext } from 'react'
-import { getData } from '../../utils/fetchData'
-import { DataContext } from '../../store/GlobalState'
 import Comment from './Comment'
 
-const Comments = ({pid}) => {
-     //TODO: SET LOADING STATE
-     const {state, dispatch} = useContext(DataContext)
-     const { comments } = state
+const Comments = ({comments}) => {
  
-     useEffect(() => {
-        getPostComments(pid)
-     }, [pid])
- 
-     const getPostComments = async id => {
-         const res = await getData(`post/${id}/comments`)
-         dispatch({ type: 'GET_COMMENTS', payload: res.comments })
-     }
     return (
         <>
             <div className="comment-post-heading my-1">

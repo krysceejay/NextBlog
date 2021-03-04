@@ -11,7 +11,7 @@ export const DataProvider = ({children}) => {
         notify: {}, 
         auth: {}, 
         users: [], 
-        categories: [], 
+        categories: [],
         topPosts: [],
         comments: []
     }

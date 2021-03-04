@@ -173,6 +173,10 @@ select:focus {
   align-items: center;
 }
 
+.cursor-pt {
+  cursor: pointer;
+}
+
 footer {
   background: $secondary-color;
   padding: 1.5rem;
