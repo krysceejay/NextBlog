@@ -13,7 +13,8 @@ export const DataProvider = ({children}) => {
         users: [], 
         categories: [],
         topPosts: [],
-        comments: []
+        comments: [],
+        likes: []
     }
 
     const [state, dispatch] = useReducer(reducers, initialState)

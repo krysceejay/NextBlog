@@ -14,6 +14,8 @@ const Blog = ({posts, result}) => {
   const { auth } = state
 
   const likePost = async pid => {
+    if(!auth.token) return dispatch({ type: 'NOTIFY', payload: {error: 'Please login or sign up'} })
+
     const res = await postData(`post/${pid}/likes`, '', auth.token)
     if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
 

@@ -23,6 +23,9 @@
   &-4 {
     padding: 4rem 0 !important;
   }
+  &-5 {
+    padding: 5rem 0 !important;
+  }
 }
 
 //Margin
@@ -161,6 +164,24 @@ select:focus {
       }
     }
   }
+}
+
+%overlay {
+  background-color: $overlay-color;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.lead {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .placeholder-avatar {

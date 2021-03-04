@@ -39,6 +39,16 @@ const reducers = (state, action) => {
                 ...state,
                 comments: [action.payload, ...state.comments]
              };
+        case ACTIONS.GET_LIKES:
+            return {
+                ...state,
+                likes: action.payload
+                };         
+        case ACTIONS.UPDATE_LIKES:
+            return {
+                ...state,
+                likes: action.payload
+                };         
         default:
             return state;
     }

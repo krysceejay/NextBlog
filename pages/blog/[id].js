@@ -10,10 +10,9 @@ import AddComment from "../../components/comment/AddComment";
 import Comments from "../../components/comment/Comments";
 import {DataContext} from '../../store/GlobalState'
 
-const Details = ({postDetails}) => {
-  const [post, setPost] = useState(postDetails)
+const Details = ({post}) => {
   const {state, dispatch} = useContext(DataContext)
-  const { comments, auth } = state
+  const { comments, likes, auth } = state
 
 //   //TODO: ADD LOADER
 //   useEffect(() => {
@@ -26,8 +25,14 @@ const Details = ({postDetails}) => {
 //    }
 
   useEffect(() => {
+    getPostLikes(post._id)
     getPostComments(post._id)
   }, [post._id])
+
+   const getPostLikes = async id => {
+     const res = await getData(`post/${id}/likes`)
+     dispatch({ type: 'GET_LIKES', payload: res.likes })
+   }
 
   const getPostComments = async id => {
     const res = await getData(`post/${id}/comments`)
@@ -35,17 +40,18 @@ const Details = ({postDetails}) => {
   }
 
   const likePost = async pid => {
+    if(!auth.token) return dispatch({ type: 'NOTIFY', payload: {error: 'Please login or sign up'} })
     const res = await postData(`post/${pid}/likes`, '', auth.token)
     if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
-    
-    setPost({...post, likes: res.like})
+
+    dispatch({ type: 'UPDATE_LIKES', payload: res.like })
   }
 
   const userLiked = () => {
     if(isEmpty(auth)){
         return false
     }else {
-        return post.likes.some(like => like.user.toString() === auth.user.id.toString())
+        return likes.some(like => like.user.toString() === auth.user.id.toString())
     }
  }
 
@@ -65,7 +71,7 @@ const Details = ({postDetails}) => {
                   <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>
                   <li onClick={() => likePost(post._id)} className="cursor-pt">
                     <i className={userLiked() ? "fa fa-thumbs-up" : "fa fa-thumbs-o-up"}>
-                      </i> {post.likes.length}</li>
+                      </i> {likes.length}</li>
                   <li><i className="fa fa-comment-o"></i> {comments.length}</li>
                 </ul>
               </div>
@@ -104,7 +110,7 @@ const Details = ({postDetails}) => {
     }
     return {
       props: { 
-        postDetails: res.post
+        post: res.post
       }
     }
  }

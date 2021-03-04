@@ -9,6 +9,8 @@ export const ACTIONS = {
     GET_TOP_POSTS: 'GET_TOP_POSTS',
     GET_COMMENTS: 'GET_COMMENTS',
     ADD_COMMENT: 'ADD_COMMENT',
+    GET_LIKES: 'GET_LIKES',
+    UPDATE_LIKES: 'UPDATE_LIKES',
  }
 
 export const addToCart = (product, cart) => {
