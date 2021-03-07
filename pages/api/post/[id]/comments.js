@@ -22,6 +22,10 @@ const getComments = async (req, res) => {
         const comments = await Comment.find({ post: id })
              .sort({ updatedAt: -1 })
              .populate('user')
+             .populate({
+                path: 'replies',
+                populate: { path: 'user' }
+              })
 
         res.json({ comments })
 

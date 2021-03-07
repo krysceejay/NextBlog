@@ -1,6 +1,6 @@
 import Comment from './Comment'
 
-const Comments = ({comments}) => {
+const Comments = ({comments, goto}) => {
  
     return (
         <>
@@ -9,7 +9,7 @@ const Comments = ({comments}) => {
             </div>
                 {comments.length === 0 ? <h3>No comment</h3> : 
                 comments.map(comment => {
-                    return <Comment key={comment._id} comment={comment} />
+                    return <Comment key={comment._id} comment={comment} goto={goto} />
                   })
                 }
             <button className="btn btn-main">See more</button>

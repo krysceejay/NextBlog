@@ -10,6 +10,10 @@ const ReplySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'comment'
   },
+  reply: {
+    type: Schema.Types.ObjectId,
+    ref: 'reply'
+  },
   body: {
     type: String,
     required: true

@@ -11,6 +11,9 @@ export const ACTIONS = {
     ADD_COMMENT: 'ADD_COMMENT',
     GET_LIKES: 'GET_LIKES',
     UPDATE_LIKES: 'UPDATE_LIKES',
+    COMMENT_LIKES: 'COMMENT_LIKES',
+    COMMENT_REPLY: 'COMMENT_REPLY',
+    REPLY_LIKES: 'REPLY_LIKES',
  }
 
 export const addToCart = (product, cart) => {

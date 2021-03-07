@@ -265,6 +265,7 @@ p {
           }
           .comment-reply {
             &-toggle {
+              margin: 1rem 0;
               font-size: 0.7rem;
             }
             &-single {
@@ -285,10 +286,11 @@ p {
               &-text {
                 .user {
                   &-name {
-                    font-size: 0.9rem;
+                    font-size: 0.8rem;
                   }
                   &-comment {
-                    font-size: 0.8rem;
+                    margin-top: 0.1rem;
+                    font-size: 0.7rem;
                   }
                   &-post-info {
                     font-size: 0.7rem;

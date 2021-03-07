@@ -1,6 +1,25 @@
+import {useContext} from 'react'
 import moment from 'moment'
+import {DataContext} from '../../store/GlobalState'
+import { postData } from '../../utils/fetchData'
 import {stringToHslColor} from '../../utils/func'
-const Comment = ({comment}) => {
+import Replies from '../reply/Replies'
+const Comment = ({comment, goto}) => {
+    const {state, dispatch} = useContext(DataContext)
+    const { auth } = state
+
+    const likeComment = async () => {
+        if(!auth.token) return dispatch({ type: 'NOTIFY', payload: {error: 'Please login or sign up'} })
+        const res = await postData(`comment/${comment._id}/likes`, '', auth.token)
+        if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
+
+        dispatch({ type: 'COMMENT_LIKES', payload: res.comment })
+    }
+
+    const showReply = (user, cid, rid) => {
+        goto({user, cid, rid})
+    }
+
     return (
         <div className="comment-post-single">
             <div className="comment-post-single-img">
@@ -20,32 +39,17 @@ const Comment = ({comment}) => {
                 </div>
                 <div className="user-post-info">
                     <span className="date">{moment(comment.createdAt).startOf('second').fromNow(true)}</span>
-                    <span className="likes">2 likes</span>
-                    <span className="reply">Reply</span>
+                    <span onClick={likeComment} className="likes cursor-pt">
+                    {comment.likes.length > 0 && comment.likes.length} {comment.likes.length > 1 ? 'likes' : 'like'}
+                    </span>
+                    <span 
+                    onClick={() => showReply(comment.user.fullName, comment._id, '')} 
+                    className="reply cursor-pt">Reply</span>
                 </div>
-                <div className="comment-reply">
-                    <div className="comment-reply-toggle">
-                        View 4 replies
-                    </div>
-                    <div className="comment-reply-single">
-                        <div className="comment-reply-single-img">
-                            <img src="/img/b1.jpg" alt="avatar" />
-                        </div>
-                        <div className="comment-reply-single-text">
-                            <div className="user-name">
-                                John
-                            </div>
-                            <div className="user-comment">
-                                My reply is very good
-                            </div>
-                            <div className="user-post-info">
-                                <span className="date">2 weeks</span>
-                                <span className="likes">2 likes</span>
-                                <span className="reply">Reply</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {comment.replies.length !== 0 &&
+                  <Replies comment={comment} />
+                }
+                
 
             </div>
             

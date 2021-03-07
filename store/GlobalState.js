@@ -14,7 +14,7 @@ export const DataProvider = ({children}) => {
         categories: [],
         topPosts: [],
         comments: [],
-        likes: []
+        postlikes: []
     }
 
     const [state, dispatch] = useReducer(reducers, initialState)

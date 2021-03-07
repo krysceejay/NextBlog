@@ -1,30 +1,28 @@
-import {useState, useContext, useEffect} from 'react'
-import moment from "moment";
-import Layout from '../../components/layouts/Layout';
+import {useState, useContext, useEffect, createRef} from 'react'
+import moment from "moment"
+import Layout from '../../components/layouts/Layout'
 import { getData, postData } from '../../utils/fetchData'
-import Socials from '../../components/Socials';
-import NewsLetter from '../../components/NewsLetter';
-import TopPosts from '../../components/post/TopPosts';
+import Socials from '../../components/Socials'
+import NewsLetter from '../../components/NewsLetter'
+import TopPosts from '../../components/post/TopPosts'
 import {isEmpty} from '../../utils/func'
-import AddComment from "../../components/comment/AddComment";
-import Comments from "../../components/comment/Comments";
+import AddComment from "../../components/comment/AddComment"
+import Comments from "../../components/comment/Comments"
 import {DataContext} from '../../store/GlobalState'
 
 const Details = ({post}) => {
+const [replyObj, setReplyObj] = useState({
+  user: '',
+  cid: '',
+  rid: ''
+})
+  const formRef = createRef()
   const {state, dispatch} = useContext(DataContext)
-  const { comments, likes, auth } = state
+  const { comments, postlikes, auth } = state
 
 //   //TODO: ADD LOADER
-//   useEffect(() => {
-//     getPostLikes(post._id)
-//   }, [post._id])
-
-//  const getPostLikes = async id => {
-//      const res = await getData(`post/${id}/likes`)
-//      dispatch({ type: 'GET_LIKES', payload: res.likes })
-//    }
-
   useEffect(() => {
+    setReplyObj({user: '', cid: '', rid: ''})
     getPostLikes(post._id)
     getPostComments(post._id)
   }, [post._id])
@@ -51,9 +49,25 @@ const Details = ({post}) => {
     if(isEmpty(auth)){
         return false
     }else {
-        return likes.some(like => like.user.toString() === auth.user.id.toString())
+        return postlikes.some(like => like.user.toString() === auth.user.id.toString())
     }
  }
+
+//  const showReply = () => {
+//   formRef.current.classList.toggle("hide")
+//  }
+
+const gotoComment = ({user, cid, rid}) => {
+  window.scrollTo({ 
+    top: formRef.current.offsetTop - 80,
+    behavior: 'smooth'
+  })
+  setReplyObj({...replyObj, user, cid, rid})
+}
+
+const clearObj = () => {
+  setReplyObj({user: '', cid: '', rid: ''})
+}
 
   return (
       <Layout title="Blog Details">
@@ -71,7 +85,7 @@ const Details = ({post}) => {
                   <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>
                   <li onClick={() => likePost(post._id)} className="cursor-pt">
                     <i className={userLiked() ? "fa fa-thumbs-up" : "fa fa-thumbs-o-up"}>
-                      </i> {likes.length}</li>
+                      </i> {postlikes.length}</li>
                   <li><i className="fa fa-comment-o"></i> {comments.length}</li>
                 </ul>
               </div>
@@ -83,10 +97,26 @@ const Details = ({post}) => {
             <br />
             <hr />
             <div className="comment-post my-2">
-              <AddComment pid={post._id} />
-              <Comments comments={comments} />
+              <AddComment 
+                pid={post._id} 
+                ref={formRef}
+                replyObj={replyObj}
+                clearObj={clearObj}
+                
+              />
+              <Comments comments={comments} goto={gotoComment} />
             </div>
-            </>
+            {/* <button onClick={showReply}>Hide form</button>
+              <form className="reply-form" ref={formRef}>
+                  <textarea
+                  name="comment"
+                  id=""
+                  placeholder="your reply..."
+                  rows="1" cols="50"
+                  ></textarea>
+                  <button type="submit" className="btn btn-reply">Reply</button>
+              </form> */}
+              </>
             }
           </div>
           <aside className="blog-sec-view-aside">
