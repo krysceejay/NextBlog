@@ -1,6 +1,5 @@
 import {useContext} from 'react'
 import {DataContext} from '../store/GlobalState'
-import Loading from './Loading'
 import Toast from './Toast'
 
 const Notify = () => {
@@ -9,20 +8,19 @@ const Notify = () => {
 
     return(
         <> 
-            {notify.loading && <Loading />}
+            {/* {notify.loading && <Loading />} */}
             {notify.error && 
-                <Toast
-                    msg={{ msg: notify.error, title: "Error" }}
-                    handleShow={() => dispatch({ type: 'NOTIFY', payload: {} })}
-                    bgColor="bg-danger"
+                <Toast 
+                msg={{ msg: notify.error, title: "Error" }}
+                type="Error"
+                dispatch={dispatch}
                 />
             }
-
             {notify.success && 
-                <Toast
-                    msg={{ msg: notify.success, title: "Success" }}
-                    handleShow={() => dispatch({ type: 'NOTIFY', payload: {} })}
-                    bgColor="bg-success"
+                <Toast 
+                msg={{ msg: notify.success, title: "Success" }}
+                type="SUCCESS"
+                dispatch={dispatch}
                 />
             }
         </>

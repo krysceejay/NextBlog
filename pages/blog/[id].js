@@ -1,13 +1,14 @@
 import {useState, useContext, useEffect, createRef} from 'react'
-import moment from "moment"
+import moment from 'moment'
 import Layout from '../../components/layouts/Layout'
 import { getData, postData } from '../../utils/fetchData'
 import Socials from '../../components/Socials'
 import NewsLetter from '../../components/NewsLetter'
 import TopPosts from '../../components/post/TopPosts'
 import {isEmpty} from '../../utils/func'
-import AddComment from "../../components/comment/AddComment"
-import Comments from "../../components/comment/Comments"
+import AddComment from '../../components/comment/AddComment'
+import Comments from '../../components/comment/Comments'
+import Loading from '../../components/Loading'
 import {DataContext} from '../../store/GlobalState'
 
 const Details = ({post}) => {
@@ -16,12 +17,14 @@ const [replyObj, setReplyObj] = useState({
   cid: '',
   rid: ''
 })
+const [isLoading, setIsLoading] = useState(false)
   const formRef = createRef()
   const {state, dispatch} = useContext(DataContext)
   const { comments, postlikes, auth } = state
 
 //   //TODO: ADD LOADER
   useEffect(() => {
+    setIsLoading(true)
     setReplyObj({user: '', cid: '', rid: ''})
     getPostLikes(post._id)
     getPostComments(post._id)
@@ -35,6 +38,9 @@ const [replyObj, setReplyObj] = useState({
   const getPostComments = async id => {
     const res = await getData(`post/${id}/comments`)
     dispatch({ type: 'GET_COMMENTS', payload: res.comments })
+    if(!res.err){
+      setIsLoading(false)
+    }
   }
 
   const likePost = async pid => {
@@ -75,8 +81,9 @@ const clearObj = () => {
       <div className="container">
         <div className="blog-sec-view">
           <div className="blog-sec-view-main">
-            { post === null || isEmpty(post) ? 
-            <h3>Loading...</h3> : 
+          
+            { isLoading || post === null || isEmpty(post) ? 
+            <Loading />: 
             <>
             <div className="latest-post-img">
               <img src={post.postImg} alt="" />

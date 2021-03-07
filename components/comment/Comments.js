@@ -12,7 +12,7 @@ const Comments = ({comments, goto}) => {
                     return <Comment key={comment._id} comment={comment} goto={goto} />
                   })
                 }
-            <button className="btn btn-main">See more</button>
+            {/* <button className="btn btn-main">See more</button> */}
         </>
     )
 }

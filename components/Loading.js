@@ -1,11 +1,13 @@
 const Loading = () => {
     return (
-        <div id="loading-div">
-            <div className="lds-ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+        <div className="loading-wrap">
+            <div id="loading-div">
+                <div className="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
         </div>
     )

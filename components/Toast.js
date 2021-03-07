@@ -1,20 +1,63 @@
-const Toast = ({msg, handleShow, bgColor}) => {
-    return(
-        <div className={`toast show position-fixed text-light ${bgColor}`}
-        style={{ top: '5px', right: '5px', zIndex: 9, minWidth: '280px' }} >
+import { useState, useEffect } from "react";
 
-            <div className={`toast-header ${bgColor} text-light`}>
-                <strong className="mr-auto text-light">{msg.title}</strong>
+const Tost = ({type, dispatch, msg}) => {
+  const [exit, setExit] = useState(false);
+  const [width, setWidth] = useState(0);
+  const [intervalID, setIntervalID] = useState(null);
 
-                <button type="button" className="ml-2 mb-1 close text-light" 
-                data-dismiss="toast" style={{ outline: 'none'}} 
-                onClick={handleShow}>x</button>
-            </div>
+  const handleStartTimer = () => {
+    const id = setInterval(() => {
+      setWidth(prev => {
+        if (prev < 100) {
+          return prev + 0.5;
+        }
 
-            <div className="toast-body">{msg.msg}</div>
+        clearInterval(id);
+        return prev;
+      });
+    }, 20);
 
+    setIntervalID(id);
+  };
+
+  const handlePauseTimer = () => {
+    clearInterval(intervalID);
+  };
+
+  const handleCloseNotification = () => {
+    handlePauseTimer();
+    setExit(true);
+    setTimeout(() => {
+      dispatch({ type: 'NOTIFY', payload: {} })
+    }, 400)
+  };
+
+  useEffect(() => {
+    if (width === 100) {
+      // Close notification
+      handleCloseNotification()
+    }
+  }, [width])
+
+  useEffect(() => {
+    handleStartTimer();
+  }, []);
+
+  return (
+    <div className="notification-wrapper">
+        <div
+        onMouseEnter={handlePauseTimer}
+        onMouseLeave={handleStartTimer}
+        className={`notification-item ${
+            type === "SUCCESS" ? "success" : "error"
+        } ${exit ? "exit" : ""}`}
+        >
+        <div onClick={handleCloseNotification} className='close-toast'>x</div>
+        <p>{msg.msg}</p>
+        <div className='bar' style={{ width: `${width}%` }} />
         </div>
-    )
-}
+    </div>
+  );
+};
 
-export default Toast
+export default Tost;

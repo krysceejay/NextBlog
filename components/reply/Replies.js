@@ -5,7 +5,7 @@ const Replies = ({comment}) => {
     return (
         <div className="comment-reply">
             <div className="comment-reply-toggle">
-                View 4 replies
+                {/* View 4 replies */}
             </div>
             {
                 comment.replies.map(reply => {

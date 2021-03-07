@@ -1,6 +1,8 @@
 import {useState, useEffect, useContext, forwardRef, useRef} from 'react'
 import {postData} from '../../utils/fetchData'
 import {DataContext} from '../../store/GlobalState'
+import Loading from '../Loading'
+
 const AddComment = forwardRef(({pid, replyObj, clearObj}, ref) => {
   const myRef = useRef()
   const {user, cid, rid} = replyObj
@@ -29,29 +31,35 @@ const AddComment = forwardRef(({pid, replyObj, clearObj}, ref) => {
 
     const handleSubmit = async e => {
       e.preventDefault()
-  
-      dispatch({ type: 'NOTIFY', payload: {loading: true} })
 
+      setFormData({...formData, isLoading: true})
       if(cid !== ''){
         const res = await postData(`comment/${cid}/reply`, {comment}, auth.token)
-        if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
+        if(res.err) {
+          setFormData({...formData, isLoading: false})
+          return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
+        }
         dispatch({ type: 'NOTIFY', payload: {success: res.msg} })
         dispatch({ type: 'COMMENT_REPLY', payload: {_id: cid, replies: res.reply} })
       }else{
         const res = await postData(`post/${pid}/comments`, {comment}, auth.token)
-        if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
+        if(res.err) {
+          setFormData({...formData, isLoading: false})
+          return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
+        }
 
         dispatch({ type: 'NOTIFY', payload: {success: res.msg} })
         dispatch({ type: 'ADD_COMMENT', payload: res.comment })
       }
       clearObj()
-      setFormData({...formData, comment: ''})
+      setFormData({...formData, comment: '', isLoading: false})
     }
 
     // comment.slice(0, user.length + 1) === `@${user}`
 
     return (
         <div className="leave-a-comment my-2" ref={ref}>
+          {isLoading ? <Loading /> :
             <form onSubmit={handleSubmit}>
                 <textarea
                 ref={myRef}
@@ -63,6 +71,7 @@ const AddComment = forwardRef(({pid, replyObj, clearObj}, ref) => {
                 ></textarea>
                 <button type="submit" className="btn btn-main">Submit</button>
             </form>
+          }
         </div>
     )
 })
