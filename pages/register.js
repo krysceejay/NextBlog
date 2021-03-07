@@ -1,9 +1,10 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import { useRouter } from 'next/router'
 import Layout from '../components/layouts/Layout'
 import valid from '../utils/valid'
 import {DataContext} from '../store/GlobalState'
 import {postData} from '../utils/fetchData'
+import {isEmpty} from '../utils/func'
 
 const Register = () => {
 
