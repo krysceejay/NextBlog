@@ -7,9 +7,9 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./:/usr/src/blog
-      - /usr/src/blog/node_modules
-      - /usr/src/blog/.next
+      - ./:/usr/src/nextblog
+      - /usr/src/nextblog/node_modules
+      - /usr/src/nextblog/.next
     networks:
       - blog-app
 networks:

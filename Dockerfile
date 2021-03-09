@@ -1,6 +1,6 @@
 FROM node:14-slim
 
-WORKDIR /usr/src/blog
+WORKDIR /usr/src/nextblog
 
 COPY package*.json ./
 
