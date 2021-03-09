@@ -7,6 +7,7 @@ import {getData, postData} from '../utils/fetchData'
 import Socials from '../components/Socials'
 import NewsLetter from '../components/NewsLetter'
 import {DataContext} from '../store/GlobalState'
+import connectDB from '../utils/db'
 
 const Blog = ({posts, result}) => {
   const [allPosts, setPost] = useState(posts)
@@ -73,6 +74,7 @@ const Blog = ({posts, result}) => {
   }
  
 export async function getServerSideProps() {
+  connectDB()
   const res = await getData('post')
   return {
     props: {

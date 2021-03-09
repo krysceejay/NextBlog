@@ -1,7 +1,4 @@
-import connectDB from '../../../../utils/db'
 import Post from '../../../../models/Post'
-
-connectDB()
 
 export default async (req, res) => {
     switch(req.method){
