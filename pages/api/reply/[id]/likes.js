@@ -18,31 +18,31 @@ const likeReply = async (req, res) => {
         const result = await auth(req, res)
         if(result.err) return res.status(400).json({err: 'Authentication is not valid.'})
         const { id } = req.query
-        const reply = await Reply.findById(id)
-        if(!reply) return res.status(400).json({err: 'This reply does not exist.'})
+        const comm = await Comment.findOne({"replies._id":  id}) 
+
+        if(!comm.replies[0]) return res.status(400).json({err: 'This reply does not exist.'})
 
         // Check if the reply has already been liked
-        if (reply.likes.some(like => like.user.toString() === result.id.toString())) {
+        if (comm.replies[0].likes.some(like => like.user.toString() === result.id.toString())) {
             // remove the like
-            reply.likes = reply.likes.filter(
+            comm.replies[0].likes = comm.replies[0].likes.filter(
                 ({ user }) => user.toString() !== result.id.toString()
             )
         }else{
             //like reply
-            reply.likes.unshift({ user: result.id })
+            comm.replies[0].likes.unshift({ user: result.id })
         }
-        const updateReply = await reply.save()
+        const updateComment = await comm.save()
 
-        const comment = await Comment.findById(updateReply.comment)
-
-        const updateComment = await Comment.populate(comment, {
+        const comment = await Comment.populate(updateComment, {
             path: 'replies',
             populate: { path: 'user' }
           })
         
         res.json({
             msg: 'Success!',
-            reply: updateComment.replies
+            cid: comment._id,
+            reply: comment.replies
         })
 
     } catch (err) {

@@ -1,4 +1,4 @@
-import {useState, useContext, useEffect} from 'react'
+import {useState, useContext} from 'react'
 import {useRouter} from 'next/router'
 import Layout from '../../../components/layouts/Layout'
 import {DataContext} from '../../../store/GlobalState'

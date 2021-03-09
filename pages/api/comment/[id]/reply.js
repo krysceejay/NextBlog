@@ -7,10 +7,28 @@ connectDB()
 
 export default async (req, res) => {
     switch(req.method){  
+        case "GET":
+            await getReplies(req, res)
+            break;
+
         case "POST":
             await replyComment(req, res)
             break;     
         }
+}
+
+const getReplies = async (req, res) => {
+    try {
+        const { id } = req.query
+
+        const replies = await Reply.find({ comment: id })
+                        .populate('user') 
+        
+        res.json({ replies })
+
+    } catch (err) {
+        return res.status(500).json({err: err.message})
+    }
 }
 
 const replyComment = async (req, res) => {
@@ -25,14 +43,19 @@ const replyComment = async (req, res) => {
         if(!comment)
         return res.status(400).json({err: 'Please add a comment.'})
 
-        const newReply = new Reply({
-            user: result.id, 
-            comment: comm._id, 
-            body: comment
-        })
+        // const newReply = new Reply({
+        //     user: result.id, 
+        //     comment: comm._id, 
+        //     body: comment
+        // })
 
-        await newReply.save()
-        comm.replies.push(newReply._id)
+        const reply = {
+            body: comment,
+            user: result.id,
+          }
+
+        // await newReply.save()
+        comm.replies.push(reply)
         await comm.save()
 
         const updateComment = await Comment.populate(comm, {

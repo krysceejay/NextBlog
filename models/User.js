@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 // Create Schema
-const userSchema = new Schema({
+const UserSchema = new Schema({
    platform : {
     type: String
     },
@@ -46,6 +46,6 @@ const userSchema = new Schema({
   timestamps: true
 });
 
-let User = mongoose.models.user || mongoose.model('user', userSchema)
+let User = mongoose.models.user || mongoose.model('user', UserSchema)
 
 export default User

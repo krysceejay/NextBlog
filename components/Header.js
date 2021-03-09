@@ -6,15 +6,18 @@ import {DataContext} from '../store/GlobalState'
 import {isEmpty} from '../utils/func'
 
 const Header = () => {
-
+  // const [tab, setTab] = useState('home')
   const router = useRouter()
     const {state, dispatch} = useContext(DataContext)
     const { auth } = state
 
 
-    const isActive = (r) => {
+    const isActive = r => {
         if(r === router.pathname){
-            return " active"
+          return "current"
+        }
+        else if(r.startsWith('/blog') && router.pathname.startsWith('/blog')){
+            return "current"
         }else{
             return ""
         }
@@ -65,12 +68,12 @@ const Header = () => {
         <ul>
           <li>
             <Link href="/">
-              <a>Home</a>
+              <a className={isActive('/')}>Home</a>
             </Link>
           </li>
           <li>
             <Link href="/blog">
-              <a className="current">Blog</a>
+              <a className={isActive('/blog')}>Blog</a>
             </Link>
           </li>
           {

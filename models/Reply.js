@@ -1,19 +1,17 @@
-import mongoose from 'mongoose';
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose'
+const Schema = mongoose.Schema
 
 const ReplySchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
-  comment: {
-    type: Schema.Types.ObjectId,
-    ref: 'comment'
-  },
-  reply: {
-    type: Schema.Types.ObjectId,
-    ref: 'reply'
-  },
+  replies: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'reply'
+    }
+  ],
   body: {
     type: String,
     required: true
@@ -33,7 +31,7 @@ const ReplySchema = new Schema({
   ]
 },{
   timestamps: true
-});
+})
 
 
 let Reply = mongoose.models.reply || mongoose.model('reply', ReplySchema)

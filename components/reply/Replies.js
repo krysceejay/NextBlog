@@ -1,7 +1,7 @@
-import React from 'react'
 import Reply from './Reply'
 
 const Replies = ({comment}) => {
+
     return (
         <div className="comment-reply">
             <div className="comment-reply-toggle">

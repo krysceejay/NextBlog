@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const connectDB = () => {
     if(mongoose.connections[0].readyState){
         console.log('Already connected.')
-        return;
+        return
     }
     mongoose.connect(process.env.MONGO_URI, {
         useCreateIndex: true,
@@ -18,3 +18,4 @@ const connectDB = () => {
 
 
 export default connectDB
+

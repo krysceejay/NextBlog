@@ -38,7 +38,7 @@ const Blog = ({posts, result}) => {
             </div>
 
             {/* pagination */}
-            <ul className="paginate-links-menu my-2">
+            {/* <ul className="paginate-links-menu my-2">
               <li className="">
                 <a className="btn-lighten">
                   <i className="fa fa-angle-left"></i>
@@ -56,7 +56,7 @@ const Blog = ({posts, result}) => {
                   <i className="fa fa-angle-right"></i>
                 </a>
               </li>
-            </ul>
+            </ul> */}
             {/* end pagination */}
           </div>
           }

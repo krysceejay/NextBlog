@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Tost = ({type, dispatch, msg}) => {
+const Toast = ({type, dispatch, msg}) => {
   const [exit, setExit] = useState(false);
   const [width, setWidth] = useState(0);
   const [intervalID, setIntervalID] = useState(null);
@@ -33,14 +33,23 @@ const Tost = ({type, dispatch, msg}) => {
   };
 
   useEffect(() => {
-    if (width === 100) {
-      // Close notification
-      handleCloseNotification()
+      if (width === 100) {
+        // Close notification
+        handleCloseNotification()
+      }
+    
+    return () => {
+      if (width === 100) {
+        // Close notification
+        handleCloseNotification()
+      }
     }
   }, [width])
 
+
   useEffect(() => {
-    handleStartTimer();
+    handleStartTimer()
+    return handleStartTimer
   }, []);
 
   return (
@@ -60,4 +69,4 @@ const Tost = ({type, dispatch, msg}) => {
   );
 };
 
-export default Tost;
+export default Toast;

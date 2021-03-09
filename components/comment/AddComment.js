@@ -32,6 +32,8 @@ const AddComment = forwardRef(({pid, replyObj, clearObj}, ref) => {
     const handleSubmit = async e => {
       e.preventDefault()
 
+      if(!auth.token) return dispatch({ type: 'NOTIFY', payload: {error: 'Please login or sign up'} })
+
       setFormData({...formData, isLoading: true})
       if(cid !== ''){
         const res = await postData(`comment/${cid}/reply`, {comment}, auth.token)

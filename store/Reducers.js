@@ -38,7 +38,7 @@ const reducers = (state, action) => {
         case ACTIONS.ADD_COMMENT:
             return {
                 ...state,
-                comments: [payload, ...state.comments]
+                comments: [...state.comments, payload]
              };
         case ACTIONS.GET_LIKES:
             return {

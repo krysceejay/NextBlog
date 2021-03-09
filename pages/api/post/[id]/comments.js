@@ -18,14 +18,13 @@ export default async (req, res) => {
 
 const getComments = async (req, res) => {
     try {
-        const { id } = req.query;
+        const { id } = req.query
         const comments = await Comment.find({ post: id })
-             .sort({ updatedAt: -1 })
-             .populate('user')
-             .populate({
-                path: 'replies',
-                populate: { path: 'user' }
-              })
+                .populate('user')
+                .populate({
+                 path: 'replies',
+                 populate: { path: 'user' }
+                })
 
         res.json({ comments })
 

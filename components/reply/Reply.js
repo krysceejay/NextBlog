@@ -12,7 +12,7 @@ const Reply = ({reply}) => {
         const res = await postData(`reply/${reply._id}/likes`, '', auth.token)
         if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
 
-        dispatch({ type: 'REPLY_LIKES', payload: {_id: reply.comment, replies: res.reply} })
+        dispatch({ type: 'REPLY_LIKES', payload: {_id: res.cid, replies: res.reply} })
     }
 
     return (
