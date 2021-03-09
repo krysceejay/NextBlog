@@ -9,8 +9,6 @@ export const getData = async (url, token = null) => {
         }
     })
 
-    console.log(res.data)
-
     return res.data
 }
 
