@@ -1,15 +1,16 @@
-import Layout from '../components/layouts/Layout';
+import Layout from '../components/layouts/Layout'
 
 const Home = () => (
       <Layout title="Home">
         <header id="header-home">
           <div className="container">
             <div className="header-content">
-              <h2>Hello, I’m Johnson smith </h2>
+              <h2>Hello,</h2>
+              <h1>I’m Johnson smith</h1>
               <p className="lead">
               I love to work in User Experience & User Interface designing. <br />
-              Because I love to solve the design problem and find easy and better solutions to solve it. <br />
-              I always try my best to make good user interface with the best user experience.
+              {/* Because I love to solve the design problem and find easy and better solutions to solve it.  */}
+              {/* I always try my best to make good user interface with the best user experience. */}
               </p>
               
             </div>
@@ -37,6 +38,11 @@ const Home = () => (
         <section id="home-services" className="py-5">
           <div className="container">
             <div className="services-wrap">
+              <div className="services-wrap-single">
+                <i className="fa fa-user"></i>
+                <h2 className="service-name">Web Design</h2>
+                <p>Aliquam libero voluptatum facilis dolorum architecto? Doloribus fuga voluptate voluptatem corporis rem!</p>
+              </div>
               <div className="services-wrap-single">
                 <i className="fa fa-user"></i>
                 <h2 className="service-name">Web Design</h2>

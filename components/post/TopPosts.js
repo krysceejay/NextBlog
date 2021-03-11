@@ -18,16 +18,14 @@ const TopPosts = () => {
     }
 
     return (
-        <>
-        <h2>Top Post</h2>
         <div className="topost-content">
+            <h2>Top Post</h2>
             {topPosts.length === 0 ? <h3>No post</h3> : 
             topPosts.map(post => {
                   return <TopPost key={post._id} post={post}/>
                 })
             }
         </div>
-        </>
     )
 }
 

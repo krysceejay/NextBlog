@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/router'
 import Cookie from 'js-cookie'
 import {DataContext} from '../store/GlobalState'
-import {isEmpty} from '../utils/func'
+import {isEmpty, stringToHslColor} from '../utils/func'
 
 const Header = () => {
   // const [tab, setTab] = useState('home')
@@ -18,7 +18,11 @@ const Header = () => {
         }
         else if(r.startsWith('/blog') && router.pathname.startsWith('/blog')){
             return "current"
-        }else{
+        }
+        else if(r.startsWith('/user') && router.pathname.startsWith('/user')){
+          return "current"
+        }
+        else{
             return ""
         }
     }
@@ -46,13 +50,23 @@ const Header = () => {
   const loggedIn = authObj => {
     return(
         <>
-           { authObj.user.isAdmin && adminRouter()}
+           {/* { authObj.user.isAdmin && adminRouter()}
           <li>
             <button onClick={handleLogout}>Logout</button>
           </li>
           <li>
             {authObj.user.name}
-          </li>
+          </li> */}
+          <button onClick={handleLogout}>Logout</button>
+          
+            <div className="loggedin-img">
+              {authObj.user.avatar ? 
+                  <img src={authObj.user.avatar} alt="" /> : 
+                  <div className="placeholder-avatar" style={{ backgroundColor: stringToHslColor(authObj.user.email) }}>
+                  {authObj.user.name.charAt(0)}
+                  </div> 
+              }
+            </div>
         </>
     )
   }
@@ -76,10 +90,16 @@ const Header = () => {
               <a className={isActive('/blog')}>Blog</a>
             </Link>
           </li>
+          <li>
           {
-            isEmpty(auth) === false && loggedIn(auth)
+            isEmpty(auth) ? 
+            <Link href="/user">
+              <a className={isActive('/user')}>Account</a>
+            </Link> :
+            loggedIn(auth) 
             
           }
+          </li>
         </ul>
       </nav>
   )

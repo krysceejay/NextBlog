@@ -1,12 +1,12 @@
 import {useState, useContext} from 'react'
-import Layout from '../components/layouts/Layout'
-import Post from '../components/post/Post'
-import FirstPost from '../components/post/FirstPost'
-import TopPosts from '../components/post/TopPosts'
-import {getData, postData} from '../utils/fetchData'
-import Socials from '../components/Socials'
-import NewsLetter from '../components/NewsLetter'
-import {DataContext} from '../store/GlobalState'
+import Layout from '../../components/layouts/Layout'
+import Post from '../../components/post/Post'
+import FirstPost from '../../components/post/FirstPost'
+import TopPosts from '../../components/post/TopPosts'
+import {getData, postData} from '../../utils/fetchData'
+import Socials from '../../components/Socials'
+import NewsLetter from '../../components/NewsLetter'
+import {DataContext} from '../../store/GlobalState'
 
 const Blog = ({posts, result}) => {
   const [allPosts, setPost] = useState(posts)

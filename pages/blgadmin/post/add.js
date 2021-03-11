@@ -54,6 +54,8 @@ const AddPost = () => {
     const handleSubmit = async e => {
         e.preventDefault()
         let media;
+
+        if(!auth.token) return dispatch({ type: 'NOTIFY', payload: {error: 'Please login or sign up'} })
         if(!auth.user.isAdmin) return dispatch({type: 'NOTIFY', payload: {error: 'Authentication is not valid.'}})
 
         if(!title || !body || !postImg || category.length === 0)
