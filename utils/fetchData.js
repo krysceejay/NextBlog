@@ -5,7 +5,8 @@ export const getData = async (url, token = null) => {
     const res = await axios.get(`${baseUrl}/api/${url}`, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': token,
+            'Access-Control-Allow-Origin': '*'
         }
     })
 
@@ -19,7 +20,8 @@ export const postData = async (url, post, token = null) => {
         data: JSON.stringify(post),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': token,
+            'Access-Control-Allow-Origin': '*'
         },
       });
 
