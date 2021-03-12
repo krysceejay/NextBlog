@@ -1,12 +1,21 @@
 import bcrypt from 'bcryptjs'
+import Cors from 'cors'
 import connectDB from '../../../utils/db'
 import User from '../../../models/User'
 import valid from '../../../utils/valid'
+import initMiddleware from '../../../middleware/initMiddleware'
 
 //Connect Database
 connectDB()
 
+const cors = initMiddleware(
+    Cors({
+      methods: ['GET', 'POST', 'OPTIONS'],
+    })
+  )
+
 export default async (req, res) => {
+    await cors(req, res)
     switch (req.method) {
         case "POST":
             await register(req, res)

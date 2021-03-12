@@ -1,11 +1,20 @@
+import Cors from 'cors'
 import connectDB from '../../../../utils/db'
 import Comment from '../../../../models/Comment'
 import Reply from '../../../../models/Reply'
 import auth from '../../../../middleware/auth'
+import initMiddleware from '../../../../middleware/initMiddleware'
 
 connectDB()
 
+const cors = initMiddleware(
+    Cors({
+      methods: ['GET', 'POST', 'OPTIONS'],
+    })
+  )
+
 export default async (req, res) => {
+    await cors(req, res)
     switch(req.method){  
         case "GET":
             await getReplies(req, res)

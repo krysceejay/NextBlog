@@ -1,11 +1,20 @@
+import Cors from 'cors'
+import jwt from 'jsonwebtoken'
 import connectDB from '../../../utils/db'
 import User from '../../../models/User'
-import jwt from 'jsonwebtoken'
 import { createAccessToken } from '../../../utils/generateToken'
+import initMiddleware from '../../../middleware/initMiddleware'
 
 connectDB()
 
+const cors = initMiddleware(
+    Cors({
+      methods: ['GET', 'POST', 'OPTIONS'],
+    })
+  )
+
 export default async (req, res) => {
+    await cors(req, res)
     try{
         const rf_token = req.cookies.refreshtoken;
         if(!rf_token) return res.status(400).json({err: 'Please login now'})
