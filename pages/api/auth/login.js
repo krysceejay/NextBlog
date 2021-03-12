@@ -1,11 +1,23 @@
 import bcrypt from 'bcryptjs'
+import Cors from 'cors'
 import connectDB from '../../../utils/db'
 import User from '../../../models/User'
+import initMiddleware from '../../../middleware/initMiddleware'
 import { createAccessToken, createRefreshToken } from '../../../utils/generateToken'
 
 connectDB()
 
+// Initialize the cors middleware
+const cors = initMiddleware(
+    Cors({
+      // Only allow requests with GET, POST and OPTIONS
+      methods: ['GET', 'POST', 'OPTIONS'],
+    })
+  )
+
 export default async (req, res) => {
+    // Run cors
+    await cors(req, res)
     switch(req.method){
         case "POST":
             await login(req, res)
