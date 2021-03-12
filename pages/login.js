@@ -27,8 +27,6 @@ const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    dispatch({ type: 'NOTIFY', payload: {loading: true} })
-
     const res = await postData('auth/login', formData)
   
     if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })

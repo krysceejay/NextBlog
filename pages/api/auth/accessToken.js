@@ -16,7 +16,7 @@ const cors = initMiddleware(
 export default async (req, res) => {
     await cors(req, res)
     try{
-        const rf_token = req.cookies.refreshtoken;
+        const rf_token = req.cookies.refreshtoken
         if(!rf_token) return res.status(400).json({err: 'Please login now'})
 
         const result = jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET)

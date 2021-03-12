@@ -1,35 +1,35 @@
-import axios from 'axios'
 const baseUrl = process.env.BASE_URL
 
-export const getData = async (url, token = null) => {
-    const res = await axios.get(`${baseUrl}/api/${url}`, {
+export const getData = async (url, token) => {
+    const res = await fetch(`${baseUrl}/api/${url}`, {
+        method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': token,
             'Access-Control-Allow-Origin': '*'
         }
     })
 
-    return res.data
+    const data = await res.json()
+    return data
 }
 
-export const postData = async (url, post, token = null) => {
-    const res = await axios({
-        method: 'post',
-        url: `${baseUrl}/api/${url}`,
-        data: JSON.stringify(post),
+export const postData = async (url, post, token) => {
+    const res = await fetch(`${baseUrl}/api/${url}`, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token,
             'Access-Control-Allow-Origin': '*'
         },
-      });
+        body: JSON.stringify(post)
+    })
 
-    return res.data
+    const data = await res.json()
+    return data
 }
 
 
-export const putData = async (url, post, token = null) => {
+export const putData = async (url, post, token) => {
     const res = await fetch(`${baseUrl}/api/${url}`, {
         method: 'PUT',
         headers: {
@@ -43,7 +43,7 @@ export const putData = async (url, post, token = null) => {
     return data
 }
 
-export const patchData = async (url, post, token = null) => {
+export const patchData = async (url, post, token) => {
     const res = await fetch(`${baseUrl}/api/${url}`, {
         method: 'PATCH',
         headers: {
@@ -58,7 +58,7 @@ export const patchData = async (url, post, token = null) => {
 }
 
 
-export const deleteData = async (url, token = null) => {
+export const deleteData = async (url, token) => {
     const res = await fetch(`${baseUrl}/api/${url}`, {
         method: 'DELETE',
         headers: {
