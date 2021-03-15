@@ -42,7 +42,7 @@ const Register = () => {
     }
 
     useEffect(() => {
-      if(isEmpty(auth) === false) router.push('/')
+      if(isEmpty(auth) === false) router.back()
     }, [auth])
 
       return (

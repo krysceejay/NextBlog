@@ -39,14 +39,14 @@ const Login = () => {
 
     Cookie.set('refreshtoken', res.refresh_token, {
       path: 'api/auth/accessToken',
-      expires: 7
+      expires: 365
     })
 
     localStorage.setItem('firstLogin', true)
   }
 
   useEffect(() => {
-    if(isEmpty(auth) === false) router.push('/')
+    if(isEmpty(auth) === false) router.back()
   }, [auth])
 
   return (

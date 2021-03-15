@@ -1,3 +1,8 @@
+@media (max-width: 930px) {
+  .auth-btn {
+    width: 70%;
+  }
+}
 @media (max-width: 900px) {
   #home-services {
     .services-wrap {
@@ -17,6 +22,9 @@
         }
       }
     }
+  }
+  .user-auth {
+    width: 60%;
   }
 }
 
@@ -115,6 +123,9 @@
       }
     }
   }
+  .auth-btn {
+    width: 80%;
+  }
 }
 
 @media (max-width: 516px) {
@@ -134,6 +145,12 @@
   }
 }
 
+@media (max-width: 450px) {
+  .auth-btn {
+    width: 85%;
+  }
+}
+
 @media (max-width: 400px) {
   #main-nav {
     justify-content: space-between;
@@ -147,6 +164,13 @@
       }
     }
   }
+
+  #header {
+    &-home {
+      height: 65vh;
+    }
+  }
+
   #home-about {
     .about-wrap {
       &-img {
@@ -175,5 +199,8 @@
         }
       }
     }
+  }
+  .user-auth {
+    width: 100%;
   }
 }
