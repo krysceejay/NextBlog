@@ -19,6 +19,8 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap"
             rel="stylesheet"
             />
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet" />
         </Head>
         <body>
           <Main />

@@ -162,6 +162,13 @@ select:focus {
   background: $secondary-color;
   z-index: 1;
   color: #fff;
+
+  .mylogo {
+    font-family: 'Arizonia', cursive;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
   a {
     color: #fff;
   }

@@ -6,7 +6,7 @@ const Home = () => (
           <div className="container">
             <div className="header-content">
               <h2>Hello,</h2>
-              <h1>I’m Johnson smith</h1>
+              <h1>I’m Chris Chijioke</h1>
               <p className="lead">
               I love to work in User Experience & User Interface designing. <br />
               {/* Because I love to solve the design problem and find easy and better solutions to solve it.  */}
@@ -20,7 +20,7 @@ const Home = () => (
           <div className="container">
             <div className="about-wrap">
               <div className="about-wrap-img">
-                <img src="/img/banner.jpg" alt="" />
+                {/* <img src="/img/chriss.jpg" alt="" /> */}
               </div>
               <div className="about-wrap-text">
                 <h2 className="about-wrap-text-head">I'm a Passionate designer & developer who loves simplicity in things and crafts beautiful user interfaces with love.</h2>

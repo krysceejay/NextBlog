@@ -50,15 +50,6 @@ const Header = () => {
   const loggedIn = authObj => {
     return(
         <div className="loggedin">
-           {/* { authObj.user.isAdmin && adminRouter()}
-          <li>
-            <button onClick={handleLogout}>Logout</button>
-          </li>
-          <li>
-            {authObj.user.name}
-          </li> */}
-          {/* <button onClick={handleLogout}>Logout</button> */}
-          
             <div className="loggedin-img">
               {authObj.user.avatar ? 
                   <img src={authObj.user.avatar} alt="" /> : 
@@ -82,7 +73,7 @@ const Header = () => {
       <nav id="main-nav">
         <Link href="/">
           <a>
-            <h1><span className="text-primary">MY</span>LOGO</h1>
+            <div className="mylogo"><span className="text-primary">Chris</span>Chijioke</div>
           </a>
         </Link>
         <ul>
@@ -100,7 +91,7 @@ const Header = () => {
           {
             isEmpty(auth) ? 
             <Link href="/user">
-              <a className={isActive('/user')}>Signin</a>
+              <a className={isActive('/user')}>Sign-in</a>
             </Link> :
             loggedIn(auth) 
           }

@@ -14,28 +14,32 @@ const login = () => {
     const { auth } = state
 
     const responseGoogle = async response => {
-        const res = await postData('auth/userauth', {
-            email: response.profileObj.email,
-            name: response.profileObj.name,
-            imageUrl: response.profileObj.imageUrl,
-            accountId: response.profileObj.googleId,
-            platform: 'google'
-        })
+        if(!response.error){
+            const res = await postData('auth/userauth', {
+                email: response.profileObj.email,
+                name: response.profileObj.name,
+                imageUrl: response.profileObj.imageUrl,
+                accountId: response.profileObj.googleId,
+                platform: 'google'
+            })
 
-        if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
-        dispatch({ type: 'NOTIFY', payload: {success: res.msg} })
+            if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
+            dispatch({ type: 'NOTIFY', payload: {success: res.msg} })
 
-        dispatch({ type: 'AUTH', payload: {
-        token: res.access_token,
-        user: res.user
-        }})
+            dispatch({ type: 'AUTH', payload: {
+            token: res.access_token,
+            user: res.user
+            }})
 
-        Cookie.set('refreshtoken', res.refresh_token, {
-        path: 'api/auth/accessToken',
-        expires: 365
-        })
+            Cookie.set('refreshtoken', res.refresh_token, {
+            path: 'api/auth/accessToken',
+            expires: 365
+            })
 
-        localStorage.setItem('firstLogin', true)
+            localStorage.setItem('firstLogin', true)
+        }else{
+            return dispatch({ type: 'NOTIFY', payload: {error: 'Cookies are not enabled in current environment.'} })
+        }
 
       }
 
@@ -51,7 +55,7 @@ const login = () => {
                         <GoogleLogin
                             clientId={process.env.GOOGLE_CLIENT_ID}
                             render={renderProps => (
-                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="auth-btn">
+                                    <button onClick={renderProps.onClick} className="auth-btn">
                                     <img src="/img/google.png" alt="" /><span>Sign in with Google</span>
                                 </button>
                             )}
