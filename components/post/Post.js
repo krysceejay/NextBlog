@@ -13,6 +13,10 @@ const Post = ({post, like, auth}) => {
             return post.likes.some(like => like.user.toString() === auth.user.id.toString())
         }
      }
+
+     const createMarkup = () => {
+        return {__html: truncate(post.body, 150)}
+      }
     
     return (
         <div className="rest-post-single">
@@ -25,9 +29,8 @@ const Post = ({post, like, auth}) => {
             </Link>
             <h3>{post.title}</h3>
             <div className="post-text my-1">
-                <p>
-                {truncate(post.body, 150)}
-                </p>
+            
+                <div dangerouslySetInnerHTML={createMarkup()} />
 
                 <ul>
                 <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>

@@ -75,6 +75,10 @@ const clearObj = () => {
   setReplyObj({user: '', cid: '', rid: ''})
 }
 
+const createMarkup = () => {
+  return {__html: post.body}
+}
+
   return (
       <Layout title="Blog Details">
         <section id="blog-sec" className="py-4">
@@ -99,7 +103,7 @@ const clearObj = () => {
             </div>
             <h1>{post.title}</h1>
             <div className="post-text my-1">
-              {post.body}
+              <div dangerouslySetInnerHTML={createMarkup()} />
             </div>
             <br />
             <hr />

@@ -46,7 +46,7 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if(isEmpty(auth) === false) router.back()
+    if(isEmpty(auth) === false) router.push('/')
   }, [auth])
 
   return (

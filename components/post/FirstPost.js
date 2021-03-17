@@ -14,6 +14,10 @@ const FirstPost = ({post, like, auth}) => {
         return post.likes.some(like => like.user.toString() === auth.user.id.toString())
     }
  }
+
+    const createMarkup = () => {
+      return {__html: truncate(post.body, 400)}
+    }
     return (
         <>
           <a>
@@ -32,7 +36,7 @@ const FirstPost = ({post, like, auth}) => {
           </a>
           <h1>{post.title}</h1>
           <div className="post-text my-1">
-            {truncate(post.body, 400)}
+            <div dangerouslySetInnerHTML={createMarkup()} />
             <p>
               <Link href={`/blog/${post._id}`}>
               <a className="btn btn-main my-1">Read More</a>
