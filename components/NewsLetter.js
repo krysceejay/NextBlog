@@ -6,6 +6,7 @@ const NewsLetter = () => {
             <div className="newsletter-sub-form my-1">
                 <input type="email" placeholder="your email" />
                 <button type="submit" className="btn btn-main">Submit</button>
+                <p>YOUR EMAIL ADDRESS WILL NEVER BE SHARED</p>
             </div>
             </form>
         </div>

@@ -6,14 +6,14 @@ const Socials = () => {
                 <a href="https://twitter.com/chrysceejay">
                 <i className="fa fa-twitter fa-2x"></i>
                 </a>
-                <a href="">
-                <i className="fa fa-facebook fa-2x"></i>
+                <a href="https://github.com/krysceejay">
+                <i className="fa fa-github fa-2x"></i>
                 </a>
                 <a href="https://www.instagram.com/__krysceejay/">
                 <i className="fa fa-instagram fa-2x"></i>
                 </a>
-                <a href="">
-                <i className="fa fa-youtube fa-2x"></i>
+                <a href="https://www.linkedin.com/in/christopher-chijioke-b1b457131/">
+                <i className="fa fa-linkedin fa-2x"></i>
                 </a>
             </div>
         </div>
