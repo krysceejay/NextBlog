@@ -5,7 +5,7 @@ const Home = () => (
         <header id="header-home">
           <div className="container">
             <div className="header-content">
-              <h2>Hello,</h2>
+              <h2>Hello!</h2>
               <h1>I’m Chris Chijioke</h1>
               <p className="lead">
               I love to work in User Experience & User Interface designing. <br />
@@ -18,6 +18,7 @@ const Home = () => (
         </header>
         <section id="home-about" className="py-5">
           <div className="container">
+            <h2 className="section-title">ABOUT ME</h2>
             <div className="about-wrap">
               <div className="about-wrap-img">
                 {/* <img src="/img/chriss.jpg" alt="" /> */}
@@ -37,6 +38,7 @@ const Home = () => (
         </section>
         <section id="home-services" className="py-5">
           <div className="container">
+          <h2 className="section-title">SERVICES</h2>
             <div className="services-wrap">
               <div className="services-wrap-single">
                 <i className="fa fa-user"></i>
@@ -63,15 +65,23 @@ const Home = () => (
         </section>
         <section id="home-contact" className="py-5">
           <div className="container">
-            <p className="freelance">
+            {/* <p className="freelance">
               I Am Available For Freelance Projects.
-            </p>
+            </p> */}
             <p className="get-in-touch">
             Let's work together indeed!
             </p>
-            <p className="">
-              Email: chryschijioke@gmail.com
+            <p>
+            Please send an email let's bring your ideas to life.
             </p>
+            <div className="email-me">
+            <div className="email-container">
+              <div className="email-icon">
+                <i className="fa fa-at"></i>
+              </div>
+              <div className="email-text">Email: chryschijioke@gmail.com</div>
+            </div>
+            </div>
           </div>
         </section>
       </Layout>

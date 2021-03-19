@@ -1,0 +1,21 @@
+name: Continuous Deployment workflow
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_NAME }}
+          username: ${{ secrets.HOST_USER }}
+          key: ${{ secrets.BLOG_SECRET }}
+          port: 22
+          script: |
+            cd NextBlog
+            git pull origin main
+            docker-compose down
+            docker-compose up -d --build

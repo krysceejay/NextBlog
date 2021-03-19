@@ -171,6 +171,31 @@
   }
 }
 
+@media (max-width: 485px) {
+  #home-contact {
+    .get-in-touch {
+      font-size: 1.6rem;
+    }
+    .email-me {
+      width: 100%;
+      .email-container {
+        padding-right: 0.6rem;
+        .email-icon {
+          flex: 1;
+          i {
+            font-size: 3rem;
+          }
+        }
+        .email-text {
+          flex: 5;
+          font-size: 1rem;
+          margin-left: 0.6rem;
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 450px) {
   .auth-btn {
     width: 85%;

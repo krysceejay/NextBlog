@@ -75,11 +75,12 @@ p {
       @extend %overlay;
 
       h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         line-height: 1.2;
+        margin-top: 1rem;
       }
       h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         line-height: 1.2;
       }
     }
@@ -96,6 +97,7 @@ p {
 #home-about {
   .about-wrap {
     display: block;
+    margin-top: 2rem;
     &-img {
       width: 300px;
       float: left;
@@ -128,6 +130,7 @@ p {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
+    margin-top: 2rem;
     &-single {
       padding: 1.5rem;
       background-color: #fff;
@@ -155,6 +158,35 @@ p {
   }
   .get-in-touch {
     font-size: 2rem;
+  }
+  .email-me {
+    width: 450px;
+    margin: auto;
+    margin-top: 1rem;
+    .email-container {
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      overflow: hidden;
+      padding-right: 1rem;
+      border-right: 2px solid $secondary-color;
+      .email-icon {
+        flex: 1;
+        background-color: #464646;
+        padding: 0.5rem 1rem;
+        i {
+          font-size: 5rem;
+          color: #969696;
+        }
+      }
+      .email-text {
+        flex: 4;
+        font-size: 1.2rem;
+        margin-left: 1rem;
+      }
+    }
   }
 }
 

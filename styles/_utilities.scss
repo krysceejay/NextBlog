@@ -419,6 +419,16 @@ select:focus {
   }
 }
 
+.section-title {
+  font-size: 1.8rem;
+  display: block;
+  padding-bottom: 0.5rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
 footer {
   background: $secondary-color;
   padding: 1.5rem;
