@@ -1,14 +1,25 @@
+import {useRef} from 'react'
 import Layout from '../components/layouts/Layout'
 
-const Home = () => (
+const Home = () => {
+  const contactRef = useRef()
+  const gotoContact = () => {
+    window.scrollTo({ 
+      top: contactRef.current.offsetTop,
+      behavior: 'smooth'
+    })
+  }
+      return (
       <Layout title="Home">
         <header id="header-home">
           <div className="container">
             <div className="header-content">
-              <h2>Hello!</h2>
+              <h2>Hello,</h2>
               <h1>I’m Chris Chijioke</h1>
               <p className="lead">
-              I love to work in User Experience & User Interface designing. <br />
+              {/* I love to work in User Experience & User Interface designing <br/> */}
+              {/* and I am here to proffer solutions to your technological needs.<br /> */}
+              I am here to give your business and ideas a new creative start right away!<br/>
               {/* Because I love to solve the design problem and find easy and better solutions to solve it.  */}
               {/* I always try my best to make good user interface with the best user experience. */}
               </p>
@@ -24,14 +35,15 @@ const Home = () => (
                 {/* <img src="/img/chriss.jpg" alt="" /> */}
               </div>
               <div className="about-wrap-text">
-                <h2 className="about-wrap-text-head">I'm a Passionate designer & developer who loves simplicity in things and crafts beautiful user interfaces with love.</h2>
-                <p className="about-wrap-text-body">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet non porro laboriosam rerum fugiat quod ullam earum dignissimos corporis, 
-                nemo provident nostrum, nihil culpa. Et corrupti sit hic amet, animi unde cumque consequuntur omnis ad nihil optio id eum qui, impedit deleniti? Veniam eum aspernatur incidunt? Doloremque, cum? 
-                Repellendus consectetur, cupiditate tenetur provident neque, quas, totam eveniet nisi eius veritatis ea maiores ducimus a reprehenderit minima magnam dicta! Aliquam libero voluptatum 
-                facilis dolorum architecto? Doloribus fuga voluptate voluptatem corporis rem! Culpa nam et accusamus beatae!
-                Repellendus consectetur, cupiditate tenetur provident neque, quas, totam eveniet nisi eius veritatis ea maiores ducimus a reprehenderit minima magnam dicta! Aliquam libero voluptatum 
-                </p>
+                <h2 className="about-wrap-text-head">
+                  {/* I'm a Passionate designer & developer who loves simplicity in things and crafts beautiful user interfaces with love. */}
+                  Chris Chijioke is a Software Engineer with a keen desire to proffering credible solutions to the technological needs of my clients.
+                </h2>
+                <div className="about-wrap-text-body">
+                  <p>With my years of experience in software engineering amongst other skills, I have helped build reliable solutions for companies in various sectors of the business world. I am committed to ensuring the goals of every organization and client I work with are attained.</p>
+                  <p>I am focused and detail oriented which helps me effectively execute every project I embark on.</p>
+                  <p>Want to know how I may help your project ? <span className="send-email"><a href="mailto:chryschijioke@gmail.com">Kindly send an email.</a></span></p>
+                </div>
               </div>
             </div>
           </div>
@@ -41,29 +53,29 @@ const Home = () => (
           <h2 className="section-title">SERVICES</h2>
             <div className="services-wrap">
               <div className="services-wrap-single">
-                <i className="fa fa-user"></i>
-                <h2 className="service-name">Web Design</h2>
-                <p>Aliquam libero voluptatum facilis dolorum architecto? Doloribus fuga voluptate voluptatem corporis rem!</p>
+                <div className="icon-container"><i className="fa fa-globe"></i></div>
+                <h2 className="service-name">Web Development</h2>
+                <p>Professional, performant, secure and SEO friendly web applications tailored to your specifications and requirements.</p>
               </div>
               <div className="services-wrap-single">
-                <i className="fa fa-user"></i>
-                <h2 className="service-name">Web Design</h2>
-                <p>Aliquam libero voluptatum facilis dolorum architecto? Doloribus fuga voluptate voluptatem corporis rem!</p>
+              <div className="icon-container"><i className="fa fa-mobile-phone"></i></div>
+                <h2 className="service-name">Mobile App</h2>
+                <p>Rich feature and high-end unique mobile applications for both android and ios platforms.</p>
               </div>
               <div className="services-wrap-single">
-                <i className="fa fa-user"></i>
-                <h2 className="service-name">Web Design</h2>
-                <p>Aliquam libero voluptatum facilis dolorum architecto? Doloribus fuga voluptate voluptatem corporis rem!</p>
+              <div className="icon-container"><i className="fa fa-server"></i></div>
+                <h2 className="service-name">Web Hosting</h2>
+                <p>Reliable, scalable and flexible cloud hosting services perfect for all your projects.</p>
               </div>
               <div className="services-wrap-single">
-                <i className="fa fa-user"></i>
-                <h2 className="service-name">Web Design</h2>
-                <p>Aliquam libero voluptatum facilis dolorum architecto? Doloribus fuga voluptate voluptatem corporis rem!</p>
+              <div className="icon-container"><i className="fa fa-database"></i></div>
+                <h2 className="service-name">Database Management</h2>
+                <p>Quality services and support for your database systems, based on your requirements and budget.</p>
               </div>
             </div>
           </div>
         </section>
-        <section id="home-contact" className="py-5">
+        <section id="home-contact" className="py-5" ref={contactRef}>
           <div className="container">
             {/* <p className="freelance">
               I Am Available For Freelance Projects.
@@ -72,19 +84,19 @@ const Home = () => (
             Let's work together indeed!
             </p>
             <p>
-            Please send an email let's bring your ideas to life.
+            Send an email let's bring your ideas to life.
             </p>
             <div className="email-me">
             <div className="email-container">
               <div className="email-icon">
                 <i className="fa fa-at"></i>
               </div>
-              <div className="email-text">Email: chryschijioke@gmail.com</div>
+              <div className="email-text">Email: <a href="mailto:chryschijioke@gmail.com">chryschijioke@gmail.com</a></div>
             </div>
             </div>
           </div>
         </section>
       </Layout>
-    )
+    )}
 
 export default Home;
