@@ -432,6 +432,27 @@ select:focus {
   letter-spacing: 2px;
 }
 
+#slide-menu {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #feffff;
+  width: 25%;
+  height: 100%;
+  border-left: 1px solid #ccc;
+  z-index: 2;
+  opacity: 0.95;
+  //padding: 2rem;
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+  overflow: hidden;
+
+  &.show-menu {
+    transform: translateX(0);
+  }
+}
+
 footer {
   background: $secondary-color;
   padding: 1.5rem;

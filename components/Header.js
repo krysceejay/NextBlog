@@ -70,6 +70,7 @@ const Header = () => {
    
 
   return (
+    
       <nav id="main-nav">
         <Link href="/">
           <a>
@@ -98,6 +99,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+    
   )
 }
 
