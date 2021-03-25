@@ -42,7 +42,7 @@ const Home = () => {
                 <div className="about-wrap-text-body">
                   <p>With my years of experience in software engineering amongst other skills, I have helped build reliable solutions for companies in various sectors of the business world. I am committed to ensuring the goals of every organization and client I work with are attained.</p>
                   <p>I am focused and detail oriented which helps me effectively execute every project I embark on.</p>
-                  <p>Want to know how I may help your project ? <span className="send-email"><a href="mailto:chryschijioke@gmail.com">Kindly send an email.</a></span></p>
+                  <p>Want to know how I may help your project ? <span className="send-email"><a href="mailto:chijiokechrys@gmail.com">Kindly send an email.</a></span></p>
                 </div>
               </div>
             </div>
@@ -91,7 +91,7 @@ const Home = () => {
               <div className="email-icon">
                 <i className="fa fa-at"></i>
               </div>
-              <div className="email-text">Email: <a href="mailto:chryschijioke@gmail.com">chryschijioke@gmail.com</a></div>
+              <div className="email-text">Email: <a href="mailto:chijiokechrys@gmail.com">chijiokechrys@gmail.com</a></div>
             </div>
             </div>
           </div>
