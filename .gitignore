@@ -33,3 +33,4 @@ next.config.js
 
 # vercel
 .vercel
+/public/*.pdf
