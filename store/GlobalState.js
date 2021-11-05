@@ -3,7 +3,7 @@ import reducers from './Reducers'
 import { getData } from '../utils/fetchData'
 
 
-export const DataContext = createContext()
+export const DataContext = createContext({})
 
 
 export const DataProvider = ({children}) => {

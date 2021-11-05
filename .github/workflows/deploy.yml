@@ -17,5 +17,5 @@ jobs:
           script: |
             cd NextBlog
             git pull origin main
-            docker-compose down
+            docker-compose stop
             docker-compose up -d --build
