@@ -13,6 +13,10 @@ const login = () => {
     const {state, dispatch} = useContext(DataContext)
     const { auth } = state
 
+    // const responseGoogle = (response) => {
+    //     console.log('response',response)
+    //   }
+
     const responseGoogle = async response => {
         if(!response.error){
             const res = await postData('auth/userauth', {
@@ -38,7 +42,7 @@ const login = () => {
 
             localStorage.setItem('firstLogin', true)
         }else{
-            return dispatch({ type: 'NOTIFY', payload: {error: 'Cookies are not enabled in current environment.'} })
+            return dispatch({ type: 'NOTIFY', payload: {error: 'An error occurred. Please try again'} })
         }
 
       }
