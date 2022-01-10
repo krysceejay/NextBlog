@@ -33,11 +33,12 @@ const Post = ({post, like, auth}) => {
                 <div dangerouslySetInnerHTML={createMarkup()} />
 
                 <ul>
-                <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>
-                <li onClick={likeAPost} className="cursor-pt">
-                    <i className={userLiked() ? "fa fa-thumbs-up" : "fa fa-thumbs-o-up"}>
-                        </i> {post.likes.length}</li>
-                <li><i className="fa fa-comment-o"></i> {post.comments.length}</li>
+                    <li><i className="fa fa-user"></i> {post.user.fullName}</li>
+                    <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>
+                    <li onClick={likeAPost} className="cursor-pt">
+                        <i className={userLiked() ? "fa fa-thumbs-up" : "fa fa-thumbs-o-up"}>
+                            </i> {post.likes.length}</li>
+                    <li><i className="fa fa-comment-o"></i> {post.comments.length}</li>
                 </ul>
             </div>
         </div>

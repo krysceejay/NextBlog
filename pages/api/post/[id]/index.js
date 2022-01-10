@@ -24,7 +24,7 @@ const getPost = async (req, res) => {
     try {
         const { id } = req.query;
 
-        const post = await Post.findById(id)
+        const post = await Post.findById(id).populate('user')
         if(!post) return res.status(400).json({err: 'This post does not exist.'})
         
         res.json({ post })

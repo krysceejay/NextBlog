@@ -25,6 +25,7 @@ const FirstPost = ({post, like, auth}) => {
             <img src={post.postImg} alt="blog post image" />
               <div className="latest-post-img-info">
                 <ul>
+                  <li><i className="fa fa-user"></i> {post.user.fullName}</li>
                   <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>
                   <li onClick={likeAPost} className="cursor-pt">
                     <i className={userLiked() ? "fa fa-thumbs-up" : "fa fa-thumbs-o-up"}>

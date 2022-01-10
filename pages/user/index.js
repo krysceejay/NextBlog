@@ -67,10 +67,11 @@ const login = () => {
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}
+                            isSignedIn={true}
                         />
-                        <button className="auth-btn">
+                        {/* <button className="auth-btn">
                             <img src="/img/facebook.png" alt="" /><span>Sign in with Facebook</span>
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </section>

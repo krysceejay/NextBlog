@@ -1,6 +1,6 @@
 import {useState, useContext} from 'react'
 import {useRouter} from 'next/router'
-import Layout from '../../../components/layouts/Layout'
+import Layout from '../../../components/layouts/AdminLayout'
 import {DataContext} from '../../../store/GlobalState'
 import {imageUpload} from '../../../utils/imageUpload'
 import {postData, getData, putData} from '../../../utils/fetchData'

@@ -27,7 +27,7 @@ export default async (req, res) => {
 
 const getPosts = async (req, res) => {
     try {
-        const posts = await Post.find().sort({ createdAt: -1 })
+        const posts = await Post.find().sort({ createdAt: -1 }).populate('user')
         res.json({
             status: 'success',
             result: posts.length,

@@ -1,4 +1,4 @@
-import Layout from '../../../components/layouts/Layout'
+import Layout from '../../../components/layouts/AdminLayout'
 const EditPost = () => {
     return (
         <Layout title='Edit Post'>

@@ -1,8 +1,10 @@
+import Layout from '../../../components/layouts/AdminLayout'
+
 const PostManager = () => {
     return (
-        <div>
+        <Layout title="Post">
             <h2>Post Manager</h2>
-        </div>
+        </Layout>
     )
 }
 
