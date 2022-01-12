@@ -24,7 +24,7 @@ const Blog = ({posts, result}) => {
 
       return (
       <Layout title="Blog">
-        <section id="blog-sec" className="py-4">
+        <section id="blog-sec" className="pay-4">
       <div className="container">
         <div className="blog-sec-view">
           {allPosts.length === 0 ? <h3>No post</h3> : 
@@ -82,4 +82,4 @@ export async function getServerSideProps() {
   }
 } 
 
-export default Blog;
+export default Blog

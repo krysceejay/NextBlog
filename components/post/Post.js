@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import moment from "moment";
+import moment from "moment"
 import {truncate, isEmpty} from '../../utils/func'
 const Post = ({post, like, auth}) => {
     const likeAPost = () => {
@@ -15,7 +15,7 @@ const Post = ({post, like, auth}) => {
      }
 
      const createMarkup = () => {
-        return {__html: truncate(post.body, 150)}
+        return {__html: truncate(post.excerpt, 150)}
       }
     
     return (
@@ -27,8 +27,8 @@ const Post = ({post, like, auth}) => {
                     </div>
                 </a>
             </Link>
-            <h3>{post.title}</h3>
-            <div className="post-text my-1">
+            <h3 className="post-title">{post.title}</h3>
+            <div className="post-text may-1">
             
                 <div dangerouslySetInnerHTML={createMarkup()} />
 

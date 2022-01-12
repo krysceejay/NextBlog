@@ -4,7 +4,7 @@ import {truncate} from '../../utils/func'
 const TopPost = ({post}) => {
 
     const createMarkup = () => {
-        return {__html: truncate(post.body, 52)}
+        return {__html: truncate(post.excerpt, 52)}
       }
 
     return (

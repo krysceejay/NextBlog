@@ -4,12 +4,7 @@ import Link from 'next/link'
 const Dashboard = () => {
     return (
         <Layout title="">
-            <h2>Admin</h2>
-            <Link href={`/blgadmin/post/add`}>
-                <a>
-                    add post
-                </a>
-            </Link>
+            <h2>Dashboard</h2>
         </Layout>
     )
 }

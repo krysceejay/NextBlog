@@ -22,7 +22,7 @@ export default async (req, res) => {
 
 const getTopPosts = async (req, res) => {
     try {
-        const posts = await Post.find().sort({ createdAt: -1 }).limit(3)
+        const posts = await Post.find({show: true}).sort({ createdAt: -1 }).limit(3)
         res.json({
             status: 'success',
             posts

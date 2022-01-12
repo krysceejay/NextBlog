@@ -7,7 +7,7 @@ export const isEmpty = obj => {
     }
 
 export const truncate = (input, len) => {
-  if (input.length > len){
+  if (input?.length > len){
     return `${input.substring(0, len)}...`
   }else{
     return input

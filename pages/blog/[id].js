@@ -81,7 +81,7 @@ const createMarkup = () => {
 
   return (
       <Layout title="Blog Details">
-        <section id="blog-sec" className="py-4">
+        <section id="blog-sec" className="pay-4">
       <div className="container">
         <div className="blog-sec-view">
           <div className="blog-sec-view-main">
@@ -102,13 +102,14 @@ const createMarkup = () => {
                 </ul>
               </div>
             </div>
-            <h1>{post.title}</h1>
-            <div className="post-text my-1">
+            <h1 className="post-title">{post.title}</h1>
+            <div className="post-text may-1">{post.excerpt}</div>
+            <div className="post-text may-1">
               <div dangerouslySetInnerHTML={createMarkup()} />
             </div>
             <br />
             <hr />
-            <div className="comment-post my-2">
+            <div className="comment-post may-2">
               <AddComment 
                 pid={post._id} 
                 ref={formRef}
