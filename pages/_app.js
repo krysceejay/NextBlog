@@ -1,3 +1,4 @@
+import '../styles/tailwindstyles.css'
 import '../styles/globals.scss'
 import {DataProvider} from '../store/GlobalState'
 

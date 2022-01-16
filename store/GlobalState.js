@@ -23,7 +23,10 @@ export const DataProvider = ({children}) => {
         const firstLogin = localStorage.getItem("firstLogin");
         if(firstLogin){
             getData('auth/accessToken').then(res => {
-                if(res.err) return localStorage.removeItem("firstLogin")
+                if(res.err) {
+                    console.log(res.err, 'errrrrr');
+                    return localStorage.removeItem("firstLogin")
+                }
                 dispatch({ 
                     type: "AUTH",
                     payload: {

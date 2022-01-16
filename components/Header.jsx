@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import Link from 'next/link';
+import Link from 'next/link'
 import {useRouter} from 'next/router'
 import Cookie from 'js-cookie'
 import {DataContext} from '../store/GlobalState'
@@ -63,6 +63,13 @@ const Header = () => {
               <li onClick={handleLogout} className="cursor-pt">
                 Logout
               </li>
+              {authObj.user.isAdmin &&
+                <li className="cursor-pt">
+                  <Link href="/blgadmin">
+                      <a>Admin</a>
+                  </Link>
+                </li>
+              }
             </ul>
         </div>
     )

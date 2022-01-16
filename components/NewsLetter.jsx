@@ -36,9 +36,9 @@ const NewsLetter = () => {
             <h2>Sign up for newsletter</h2>
             {isLoading ? <Loading /> :
             <form onSubmit={handleSubmit}>
-                <div className="newsletter-sub-form my-1">
+                <div className="newsletter-sub-form may-1">
                     <input type="email" placeholder="your email" name="email" onChange={handleOnchange} value={email} />
-                    <button type="submit" className="btn btn-main py-07">Submit</button>
+                    <button type="submit" className="btn btn-main pay-07">Submit</button>
                     <p>YOUR EMAIL ADDRESS WILL NEVER BE SHARED</p>
                 </div>
             </form> 

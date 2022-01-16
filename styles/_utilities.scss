@@ -10,7 +10,7 @@
 }
 
 //Padding
-.py {
+.pay {
   &-07 {
     padding: 0.7rem 0 !important;
   }
@@ -32,7 +32,7 @@
 }
 
 //Margin
-.my {
+.may {
   &-1 {
     margin: 1rem 0 !important;
   }
@@ -46,6 +46,7 @@
     margin: 4rem 0 !important;
   }
 }
+
 
 //Buttons
 %btn-shared {
@@ -323,7 +324,7 @@ select:focus {
   top: 10px;
   right: 10px;
   width: 300px;
-  z-index: 3;
+  z-index: 999;
 }
 
 .notification-item {
@@ -419,6 +420,11 @@ select:focus {
     position: absolute;
     top: 1.6rem;
     left: -1.6rem;
+    padding: 1rem;
+    
+    li {
+      padding: 0.3rem 1.5rem !important;
+    }
   }
 }
 
@@ -458,4 +464,14 @@ footer {
   padding: 1.5rem;
   color: $light-color;
   text-align: center;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.post-title-rest {
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }

@@ -1,6 +1,6 @@
 import Cors from 'cors'
 import connectDB from '../../../utils/db'
-import Post from '../../../models/Post'
+import Category from '../../../models/Category'
 import auth from '../../../middleware/auth'
 import initMiddleware from '../../../middleware/initMiddleware'
 
@@ -16,46 +16,43 @@ export default async (req, res) => {
     await cors(req, res)
     switch(req.method){
         case "GET":
-            await getPosts(req, res)
+            await getCategories(req, res)
             break;
 
         case "POST":
-            await createPost(req, res)
+            await addCategory(req, res)
             break;    
     }
 }
 
-const getPosts = async (req, res) => {
+const getCategories = async (req, res) => {
     try {
-        const posts = await Post.find({show: true}).sort({ createdAt: -1 }).populate('user')
+        const categories = await Category.find().sort({ createdAt: -1 })
         res.json({
             status: 'success',
-            result: posts.length,
-            posts
+            categories
         })
     } catch (err) {
         return res.status(500).json({err: err.message})
     }
 }
 
-const createPost = async (req, res) => {
+const addCategory = async (req, res) => {
     try {
         const result = await auth(req, res)
         if(!result.isAdmin) return res.status(400).json({err: 'Authentication is not valid.'})
 
-        const {title, excerpt, body, category, postImg, show} = req.body
+        const {name} = req.body
 
-        if(!title || !excerpt || !body || !postImg || category.length === 0)
-        return res.status(400).json({err: 'Please add all the fields.'})
+        if(!name)
+        return res.status(400).json({err: 'Please a category.'})
 
 
-        const newPost = new Post({
-            user: result.id, title, excerpt, body, category, postImg, show
-        })
+        const newCategory = new Category({name})
 
-        await newPost.save()
+        await newCategory.save()
 
-        res.json({msg: 'Success! Created a new post'})
+        res.json({msg: 'Success! Created a new category'})
 
     } catch (err) {
         return res.status(500).json({err: err.message})

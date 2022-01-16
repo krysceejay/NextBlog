@@ -1,7 +1,8 @@
 import Cors from 'cors'
-import connectDB from '../../../utils/db'
-import Post from '../../../models/Post'
-import initMiddleware from '../../../middleware/initMiddleware'
+import connectDB from '../../../../utils/db'
+import Post from '../../../../models/Post'
+import auth from '../../../../middleware/auth'
+import initMiddleware from '../../../../middleware/initMiddleware'
 
 connectDB()
 
@@ -15,19 +16,21 @@ export default async (req, res) => {
     await cors(req, res)
     switch(req.method){
         case "GET":
-            await getTopPosts(req, res)
+            await getAllPosts(req, res)
             break;   
     }
 }
 
-const getTopPosts = async (req, res) => {
+const getAllPosts = async (req, res) => {
     try {
-        const posts = await Post.find({show: true}).sort({ createdAt: -1 }).limit(3)
+        const posts = await Post.find().sort({ createdAt: -1 }).populate('user')
         res.json({
             status: 'success',
+            result: posts.length,
             posts
         })
     } catch (err) {
         return res.status(500).json({err: err.message})
     }
 }
+

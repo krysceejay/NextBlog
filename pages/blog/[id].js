@@ -81,7 +81,7 @@ const createMarkup = () => {
 
   return (
       <Layout title="Blog Details">
-        <section id="blog-sec" className="py-4">
+        <section id="blog-sec" className="pay-3">
       <div className="container">
         <div className="blog-sec-view">
           <div className="blog-sec-view-main">
@@ -93,6 +93,7 @@ const createMarkup = () => {
               <img src={post.postImg} alt="" />
               <div className="latest-post-img-info">
                 <ul>
+                  <li><i className="fa fa-user"></i> {post.user.fullName}</li>
                   <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>
                   <li onClick={() => likePost(post._id)} className="cursor-pt">
                     <i className={userLiked() ? "fa fa-thumbs-up" : "fa fa-thumbs-o-up"}>
@@ -101,13 +102,14 @@ const createMarkup = () => {
                 </ul>
               </div>
             </div>
-            <h1>{post.title}</h1>
-            <div className="post-text my-1">
+            <h1 className="post-title">{post.title}</h1>
+            <div className="post-text may-1">{post.excerpt}</div>
+            <div className="post-text may-1">
               <div dangerouslySetInnerHTML={createMarkup()} />
             </div>
             <br />
             <hr />
-            <div className="comment-post my-2">
+            <div className="comment-post may-3">
               <AddComment 
                 pid={post._id} 
                 ref={formRef}

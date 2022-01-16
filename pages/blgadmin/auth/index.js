@@ -1,10 +1,10 @@
 import {useState, useEffect , useContext} from 'react'
 import { useRouter } from 'next/router'
 import Cookie from 'js-cookie'
-import Layout from '../components/layouts/Layout'
-import {isEmpty} from '../utils/func'
-import {DataContext} from '../store/GlobalState'
-import {postData} from '../utils/fetchData'
+import Layout from '../../../components/layouts/AuthLayout'
+import {isEmpty} from '../../../utils/func'
+import {DataContext} from '../../../store/GlobalState'
+import {postData} from '../../../utils/fetchData'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -46,11 +46,12 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if(isEmpty(auth) === false) router.push('/')
+    if(auth?.user?.isAdmin) router.back()
+
   }, [auth])
 
   return (
-    <Layout title="Login">
+    <Layout>
         <form onSubmit={handleSubmit}>
             <label>Email:</label><br />
             <input type="email" id="email" name="email" value={email} onChange={handleOnchange} /><br />
@@ -58,7 +59,7 @@ const Login = () => {
             <input type="password" id="password" name="password" value={password} onChange={handleOnchange} /><br /><br />
             <input type="submit" value="Submit" />
         </form> 
-      </Layout>
+    </Layout>
     )
   }
 

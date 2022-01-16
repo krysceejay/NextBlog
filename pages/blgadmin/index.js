@@ -1,8 +1,11 @@
+import Layout from '../../components/layouts/AdminLayout'
+import Link from 'next/link'
+
 const Dashboard = () => {
     return (
-        <div>
-            <h2>Admin</h2>
-        </div>
+        <Layout title="">
+            <h2>Dashboard</h2>
+        </Layout>
     )
 }
 
