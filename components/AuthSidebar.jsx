@@ -39,7 +39,7 @@ const AuthSidebar = forwardRef((_, ref) => {
                 </div>
                 <div>
                     <h3 className="text-base font-semibold">{`${auth?.user?.name}`}</h3>
-                    <p className="text-tiny font-bold tracking-wide uppercase">ROLE: Admin</p>
+                    <p className="text-tiny font-bold tracking-wider uppercase text-hov-t-color mt-1">ROLE: Admin</p>
                 </div>
             </div>
             <div className="pb-8 overflow-y-scroll h-5/6">

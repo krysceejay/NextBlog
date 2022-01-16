@@ -43,14 +43,14 @@ const createPost = async (req, res) => {
         const result = await auth(req, res)
         if(!result.isAdmin) return res.status(400).json({err: 'Authentication is not valid.'})
 
-        const {title, excerpt, body, category, postImg} = req.body
+        const {title, excerpt, body, category, postImg, show} = req.body
 
-        if(!title || !body || !postImg || category.length === 0)
+        if(!title || !excerpt || !body || !postImg || category.length === 0)
         return res.status(400).json({err: 'Please add all the fields.'})
 
 
         const newPost = new Post({
-            user: result.id, title, excerpt, body, category, postImg
+            user: result.id, title, excerpt, body, category, postImg, show
         })
 
         await newPost.save()

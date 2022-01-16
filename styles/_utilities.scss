@@ -324,7 +324,7 @@ select:focus {
   top: 10px;
   right: 10px;
   width: 300px;
-  z-index: 3;
+  z-index: 999;
 }
 
 .notification-item {
@@ -469,4 +469,9 @@ footer {
 .post-title {
   font-size: 1.5rem;
   text-transform: uppercase;
+}
+.post-title-rest {
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }

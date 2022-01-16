@@ -2,7 +2,7 @@ const Socials = () => {
     return (
         <div className="connect-socials">
             <h2>Stay Connected</h2>
-            <div className="connect-socials-icons my-1">
+            <div className="connect-socials-icons may-1">
                 <a href="https://twitter.com/chrysceejay">
                 <i className="fa fa-twitter fa-2x"></i>
                 </a>

@@ -27,12 +27,12 @@ const Post = ({post, like, auth}) => {
                     </div>
                 </a>
             </Link>
-            <h3 className="post-title">{post.title}</h3>
+            <h3 className="post-title-rest">{post.title}</h3>
             <div className="post-text may-1">
             
                 <div dangerouslySetInnerHTML={createMarkup()} />
 
-                <ul>
+                <ul className="may-1">
                     <li><i className="fa fa-user"></i> {post.user.fullName}</li>
                     <li><i className="fa fa-calendar"></i> {moment(post.createdAt).format("MMM DD, YYYY")}</li>
                     <li onClick={likeAPost} className="cursor-pt">

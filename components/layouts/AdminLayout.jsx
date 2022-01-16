@@ -35,7 +35,7 @@ const AdminLayout = ({ children, title }) => {
       </Head>
       <Navbar ref={barRef} handleShow={handleShow} />
       <Notify />
-      <div className="relative min-h-screen flex w-screen overflow-hidden">
+      <div className="relative min-h-screen flex w-screen">
           <AuthSidebar ref={sideBarRef} />
           <main className="py-8 px-4 md:p-8 text-2xl font-bold flex-1 ml-0 md:ml-18 lg:ml-64">
               {children}

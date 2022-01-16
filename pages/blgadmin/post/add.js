@@ -1,9 +1,12 @@
 import {useState, useContext} from 'react'
 import {useRouter} from 'next/router'
+import {EditorState, convertFromRaw, convertToRaw, ContentState} from 'draft-js'
+import draftToHtml from 'draftjs-to-html'
 import Layout from '../../../components/layouts/AdminLayout'
+import TextEditor from '../../../components/TextEditor'
 import {DataContext} from '../../../store/GlobalState'
 import {imageUpload} from '../../../utils/imageUpload'
-import {postData, getData, putData} from '../../../utils/fetchData'
+import {postData, getData} from '../../../utils/fetchData'
 
 const AddPost = ({categories}) => {
 
@@ -12,31 +15,55 @@ const AddPost = ({categories}) => {
         excerpt: '',
         body: '',
         category: [],
-        postImg: ''
-      });
+        postImg: '',
+        show: false
+      })
+
+    const [editorState, setEditorState] = useState(EditorState.createEmpty())  
     
-    const { title, excerpt, body, category, postImg } = formData;   
+    const { title, excerpt, body, category, postImg, show } = formData
 
     const {state, dispatch} = useContext(DataContext)  
     const { auth } = state
     const router = useRouter()
 
+    const onEditorStateChange = editState => {
+        setEditorState(editState)
+
+        const est = draftToHtml(convertToRaw(editState.getCurrentContent()))
+        setFormData({...formData, body: est})
+    }
+
     const handleOnchange = e => {
         const {name, value} = e.target
         setFormData({...formData, [name]: value})
         dispatch({ type: 'NOTIFY', payload: {} })
-      }
-    
-    const handleSelectChange = e => {
-        let options = e.target.options;
-        let value = [];
-        for (let i = 0, l = options.length; i < l; i++) {
-            if (options[i].selected) {
-            value.push(options[i].value);
-            }
+    }
+
+    const handleShow = e => {
+        let val
+        const {name, value} = e.target
+        if(value === 'true') {val = true}
+        else {
+            val = false
         }
-        setFormData({...formData, category: value})
-    }  
+        setFormData({...formData, [name]: val})
+    }
+    
+    // const handleSelectChange = e => {
+    //     let options = e.target.options;
+    //     let value = [];
+    //     for (let i = 0, l = options.length; i < l; i++) {
+    //         if (options[i].selected) {
+    //         value.push(options[i].value);
+    //         }
+    //     }
+    //     setFormData({...formData, category: value})
+    // } 
+    
+    // const formateCat = item => {
+    //     return item.name
+    // }
     
     const handleUploadInput = e => {
     dispatch({type: 'NOTIFY', payload: {}})
@@ -59,7 +86,7 @@ const AddPost = ({categories}) => {
         if(!auth.token) return dispatch({ type: 'NOTIFY', payload: {error: 'Please login or sign up'} })
         if(!auth.user.isAdmin) return dispatch({type: 'NOTIFY', payload: {error: 'Authentication is not valid.'}})
 
-        if(!title || !body || !postImg || category.length === 0)
+        if(!title || !excerpt || !body || !postImg || category.length === 0)
         return dispatch({type: 'NOTIFY', payload: {error: 'Please add all the fields.'}})
 
         dispatch({ type: 'NOTIFY', payload: {loading: true} })
@@ -71,6 +98,7 @@ const AddPost = ({categories}) => {
             body, 
             category,
             excerpt,
+            show,
             postImg: media[0].url
             }, auth.token)
 
@@ -81,41 +109,22 @@ const AddPost = ({categories}) => {
     }
 
     const removeCat = ind => {
-        setFormData({...formData, category: category.filter(it => it._id !== ind)})
+        setFormData({...formData, category: category.filter(ct => ct !== ind)})
     }
 
     const addCat = e => {
         if(e.target.value == "") return
         const findCat = categories.find(ct => ct._id === e.target.value)
-        if(category.some(it => it._id === findCat._id)) return
-        setFormData({...formData, category: [...category, findCat]})
+        if(category.some(it => it === findCat.name)) return
+        setFormData({...formData, category: [...category, findCat.name]})
     }
 
     return (
         <Layout title='Add Post'>
             <h3>Add Post</h3>
-            <div className="mt-3 max-w-lg">
-            <form onSubmit={handleSubmit} className="px-6 pt-6 pb-8 mb-4 text-sm font-semibold">
-                {/* <label>Title:</label><br />
-                <input type="text" name="title" value={title} onChange={handleOnchange} /><br />
-                <label>Body:</label><br />
-                <textarea name="body" cols="30" rows="4" onChange={handleOnchange} /><br />
-                <label>Cat:</label><br />
-                <select name="category" onChange={handleSelectChange} multiple>
-                    <option value="programming">Programming</option>
-                    <option value="bitcoin">Bitcoin</option>
-                    <option value="Nextjs">Nextjs</option>
-                   {
-                        categories.map(cat => {
-                            <option key={cat._id} value={cat.name}>{cat.name}</option>
-                        })
-                    }
-                </select><br />
-                <label>Post Image</label><br />
-                <input type="file" onChange={handleUploadInput} accept="image/*" /><br /><br />
-
-                <input type="submit" value="Submit" /> */}
-                <div className="mb-4">
+            <div className="mt-3 max-w-5xl">
+            <form onSubmit={handleSubmit} className="sm:px-6 pt-6 pb-8 mb-4 text-sm font-semibold">
+                <div className="mb-6">
                     <label className="block mb-2">
                         Title
                     </label>
@@ -126,28 +135,30 @@ const AddPost = ({categories}) => {
                     className="appearance-none border rounded w-full p-3 leading-tight focus:outline-none" 
                     type="text" />
                 </div>
-                <div className="mb-4">
+                <div className="mb-6">
                     <label className="block mb-2">
                         Excerpt
                     </label>
-                    <input 
-                    name="excerpt"
-                    value={excerpt}
-                    onChange={handleOnchange}
+                    <textarea 
+                    name="excerpt" 
+                    rows="3" 
                     className="appearance-none border rounded w-full p-3 leading-tight focus:outline-none" 
-                    type="text" />
+                    onChange={handleOnchange}
+                    value={excerpt}
+                    >
+                    </textarea>
                 </div>
-                <div className="mb-4">
+                <div className="mb-6">
                     <label className="block mb-2">
                         Category
                     </label>
                     <div className="">
                         <ul className="flex flex-wrap items-center space-x-2 text-white text-xs p-2">
                             {
-                                category.map(it => (
-                                    <li key={it._id} className="bg-blue-500 flex items-center space-x-2 mb-2 p-1 rounded-md">
-                                        <span>{it.name}</span>
-                                        <svg onClick={()  => removeCat(it._id)} xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                category.map((ct, ind) => (
+                                    <li key={ind} className="bg-blue-500 flex items-center space-x-2 mb-2 p-1 rounded-md">
+                                        <span>{ct}</span>
+                                        <svg onClick={()  => removeCat(ct)} xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                         </svg>
                                     </li>
@@ -169,7 +180,7 @@ const AddPost = ({categories}) => {
                         </div>
                     </div>
                 </div>
-                <div className="mb-4">
+                <div className="mb-6">
                     {/* <div className="h-20 w-40">
                         <img src={featureImage} className="w-full h-full object-cover" />
                     </div> */}
@@ -178,7 +189,6 @@ const AddPost = ({categories}) => {
                     </label>
                     <input 
                     accept="image/*"
-                    //className="appearance-none border rounded w-full p-3 leading-tight focus:outline-none" 
                     className="block w-full text-sm text-gray-500
                     file:mr-4 file:py-2 file:px-4
                     file:rounded-full file:border-0
@@ -188,7 +198,22 @@ const AddPost = ({categories}) => {
                     onChange={handleUploadInput}
                     type="file" />
                 </div>
-                <textarea name="body" cols="30" rows="4" onChange={handleOnchange} /><br />
+                <div className="mb-6">
+                    <TextEditor 
+                    editorState={editorState}
+                    onEditorStateChange={onEditorStateChange}
+                    />
+                </div>
+                <div className="mb-6 flex space-x-4 items-center">
+                    <div className="flex space-x-2 items-center">
+                        <input type="radio" name="show" value={false} onChange={handleShow} defaultChecked className="checked:bg-gray-900 checked:border-transparent scale-125" />
+                        <span>Draft</span>
+                    </div>
+                    <div className="flex space-x-2 items-center">
+                        <input type="radio" name="show" value={true} onChange={handleShow} className="checked:bg-gray-900 checked:border-transparent scale-125" />
+                        <span>Publish</span>
+                    </div>
+                </div>
                 <div>
                     <button className="bg-hov-t-color text-white py-2 px-8 rounded focus:outline-none" type="submit">
                         Save

@@ -27,7 +27,7 @@ const Home = () => {
             </div>
           </div>
         </header>
-        <section id="home-about" className="py-5">
+        <section id="home-about" className="pay-5">
           <div className="container">
             <h2 className="section-title">ABOUT ME</h2>
             <div className="about-wrap">
@@ -48,7 +48,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section id="home-services" className="py-5">
+        <section id="home-services" className="pay-5">
           <div className="container">
           <h2 className="section-title">SERVICES</h2>
             <div className="services-wrap">
@@ -75,7 +75,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section id="home-contact" className="py-5" ref={contactRef}>
+        <section id="home-contact" className="pay-5" ref={contactRef}>
           <div className="container">
             {/* <p className="freelance">
               I Am Available For Freelance Projects.

@@ -81,7 +81,7 @@ const createMarkup = () => {
 
   return (
       <Layout title="Blog Details">
-        <section id="blog-sec" className="pay-4">
+        <section id="blog-sec" className="pay-3">
       <div className="container">
         <div className="blog-sec-view">
           <div className="blog-sec-view-main">
@@ -109,7 +109,7 @@ const createMarkup = () => {
             </div>
             <br />
             <hr />
-            <div className="comment-post may-2">
+            <div className="comment-post may-3">
               <AddComment 
                 pid={post._id} 
                 ref={formRef}
