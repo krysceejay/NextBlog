@@ -202,6 +202,7 @@ select:focus {
       &:hover ul {
         position: absolute;
         top: 3rem;
+        
       }
     }
   }
@@ -419,11 +420,12 @@ select:focus {
     background: $secondary-color;
     position: absolute;
     top: 1.6rem;
-    left: -1.6rem;
-    padding: 1rem;
+    right: 0;
+    padding: 0.6rem 0;
+    border-radius: 3px;
     
     li {
-      padding: 0.3rem 1.5rem !important;
+      padding: 0.3rem 1rem !important;
     }
   }
 }
